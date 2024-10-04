@@ -2,6 +2,7 @@ import { Noto_Sans } from "next/font/google";
 import { Noto_Sans_Arabic } from "next/font/google";
 
 import "./globals.css";
+import Layout from "src/components/layout/Layout";
 
 const enFont = Noto_Sans({
   subsets: ["latin"],
@@ -26,7 +27,9 @@ export default function RootLayout({ children }) {
       dir="rtl"
       className={`${faFont.variable} ${enFont.variable} text-md`}
     >
-      <body>{children}</body>
+      <body className="container">
+        <Layout>{children}</Layout>
+      </body>
     </html>
   );
 }
