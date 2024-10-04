@@ -21,7 +21,14 @@
   color: var(--font);
 }
 
+a {
+  color: inherit;
+  cursor: pointer;
+}
+
 body {
   margin: 0 auto;
   background-color: var(--bg-main);
+  max-width: 1536px;
+  padding: 0 8px;
 }
