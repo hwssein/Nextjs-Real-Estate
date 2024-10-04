@@ -1,4 +1,18 @@
+import { Noto_Sans } from "next/font/google";
+import { Noto_Sans_Arabic } from "next/font/google";
+
 import "./globals.css";
+
+const enFont = Noto_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--en-font",
+});
+const faFont = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  display: "swap",
+  variable: "--fa-font",
+});
 
 export const metadata = {
   title: "Real State Next.js Project",
@@ -7,7 +21,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fa" dir="rtl">
+    <html
+      lang="fa"
+      dir="rtl"
+      className={`${faFont.variable} ${enFont.variable} text-md`}
+    >
       <body>{children}</body>
     </html>
   );

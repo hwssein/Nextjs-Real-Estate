@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-main: #18181b;
+  --bg-card: #3f3f46;
+  --primary: #0e7490;
+  --secondary: #a5f3fc;
+  --font: #fafafa;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  list-style-type: none;
+  border: none;
+  outline: none;
+  color: var(--font);
+}
+
+body {
+  margin: 0 auto;
+  background-color: var(--bg-main);
+}
