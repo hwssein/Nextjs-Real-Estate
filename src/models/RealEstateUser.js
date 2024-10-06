@@ -21,6 +21,7 @@ const userSchema = new Schema({
   },
 });
 
-const User = models.User || model("User", userSchema);
+const RealEstateUser =
+  models.RealEstateUser || model("RealEstateUser", userSchema);
 
-export default User;
+export default RealEstateUser;
