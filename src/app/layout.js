@@ -16,7 +16,7 @@ const faFont = Noto_Sans_Arabic({
 });
 
 export const metadata = {
-  title: "Real State Next.js Project",
+  title: "Real Estate Next.js Project",
   description: "پروژه املاک توسعه داده شده با next js",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     <html
       lang="fa"
       dir="rtl"
-      className={`${faFont.variable} ${enFont.variable} text-md`}
+      className={`${faFont.variable} ${enFont.variable} text-base`}
     >
       <body className="container">
         <Layout>{children}</Layout>

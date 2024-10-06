@@ -1,24 +1,14 @@
 function Footer() {
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start p-3 bg-bgCard rounded mt-4 ">
-        <p className="text-lg font-bold text-secondary">
-          سامانه خرید و فروش ملک
-        </p>
+      <div className="w-full flex flex-col items-start justify-start py-2 my-4 ">
+        <p className="text-lg font-bold text-primary">سامانه خرید و فروش ملک</p>
 
-        <ul className="w-full my-4 flex items-center justify-evenly flex-row gap-2">
-          <li className="hover:text-secondary transition ease-in duration-200 cursor-pointer">
-            خرید
-          </li>
-          <li className="hover:text-secondary transition ease-in duration-200 cursor-pointer">
-            فروش
-          </li>
-          <li className="hover:text-secondary transition ease-in duration-200 cursor-pointer">
-            رهن
-          </li>
-          <li className="hover:text-secondary transition ease-in duration-200 cursor-pointer">
-            اجاره
-          </li>
+        <ul className="w-full my-5 flex items-center justify-evenly flex-row gap-2">
+          <li className="button3">خرید</li>
+          <li className="button3">فروش</li>
+          <li className="button3">رهن</li>
+          <li className="button3">اجاره</li>
         </ul>
 
         <p className="w-full text-center mt-2 ">
