@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start py-2 my-4 ">
+      <div className="w-full flex flex-col items-center justify-start py-2 my-4 sm:items-start ">
         <p className="text-lg font-bold text-primary">سامانه خرید و فروش ملک</p>
 
         <ul className="w-full my-5 flex items-center justify-evenly flex-row gap-2">
