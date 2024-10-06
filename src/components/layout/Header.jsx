@@ -1,15 +1,19 @@
 function Header() {
   return (
     <>
-      <div className="w-full bg-bgCard flex flex-row items-center justify-between px-3 py-5 mt-2 mb-4 rounded">
-        <div className="flex items-center justify-start gap-4">
-          <span>صفحه اصلی</span>
-          <span>آگهی ها</span>
+      <div className="w-full flex flex-row items-center justify-between my-4 py-2 ">
+        <div className="flex items-center justify-start gap-6">
+          <div className="font-bold text-xl text-primary">املاک کویر</div>
+
+          <div className="flex items-center justify-start gap-4">
+            <span className="p-1">صفحه اصلی</span>
+            <span className="p-1">آگهی ها</span>
+          </div>
         </div>
 
-        <div className="flex items-center justify-end gap-2">
-          <button className="px-3 py-1 rounded bg-primary">ورود</button>
-          <button className="px-3 py-1 rounded bg-primary">ثبت نام</button>
+        <div className="flex items-center justify-start gap-4">
+          <button className="button1">ورود</button>
+          <button className="button2">ثبت نام</button>
         </div>
       </div>
     </>

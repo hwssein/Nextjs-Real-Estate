@@ -1,13 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
-  --bg-main: #18181b;
-  --bg-card: #3f3f46;
-  --primary: #0e7490;
-  --secondary: #a5f3fc;
-  --font: #fafafa;
+  --bg-main: #f5f5f5;
+  --primary: #be123c;
+  --primary-hover: #9f1239;
+  --secondary: #262626;
 }
 
 * {
@@ -18,7 +13,6 @@
   list-style-type: none;
   border: none;
   outline: none;
-  color: var(--font);
 }
 
 a {
@@ -26,9 +20,25 @@ a {
   cursor: pointer;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0 auto;
   background-color: var(--bg-main);
   max-width: 1536px;
   padding: 0 10px;
+}
+
+.button1 {
+  @apply py-1 px-3 bg-primary rounded text-bgMain hover:bg-primaryHover transition ease-in duration-100;
+}
+
+.button2 {
+  @apply py-1 px-3 border-2 border-primary text-primary rounded hover:border-primaryHover transition ease-in duration-100;
+}
+
+.button3 {
+  @apply py-1 px-3 border-b border-primary border-opacity-0 hover:border-opacity-100 transition ease-in duration-100;
 }
