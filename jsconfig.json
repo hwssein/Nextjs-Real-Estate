@@ -6,6 +6,7 @@
       "@/layout/*": ["src/component/layout/*"],
       "@/module/*": ["src/component/module/*"],
       "@/template/*": ["src/component/template/*"],
+      "@/config/*": ["src/config/*"],
       "@/models/*": ["src/models/*"],
       "@/providers/*": ["src/providers/*"],
       "@/utils/*": ["src/utils/*"],

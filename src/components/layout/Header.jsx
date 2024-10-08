@@ -9,8 +9,6 @@ import { FaBars } from "react-icons/fa6";
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
-  console.log(showMenu);
-
   return (
     <>
       <div className="w-full flex flex-row items-center justify-between my-4 py-2 ">
