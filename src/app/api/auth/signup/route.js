@@ -40,9 +40,8 @@ const POST = async (req) => {
     });
 
     return NextResponse.json(
-      { message: "حساب کاربری با موفقیت ایجاد شد" },
-      { status: "201" },
-      { data: user }
+      { message: "حساب کاربری با موفقیت ایجاد شد", data: user },
+      { status: "201" }
     );
   } catch (error) {
     console.log(error);

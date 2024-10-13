@@ -27,7 +27,7 @@ a {
 body {
   margin: 0 auto;
   background-color: var(--bg-main);
-  max-width: 1536px;
+  max-width: 1280px;
   padding: 0 10px;
 }
 
