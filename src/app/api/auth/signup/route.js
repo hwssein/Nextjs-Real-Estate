@@ -16,10 +16,10 @@ const POST = async (req) => {
         { status: 422 }
       );
 
-    if (password < 4)
+    if (password.length < 4)
       return NextResponse.json(
         { error: "رمز عبور کوتاه است" },
-        { status: "422" }
+        { status: 422 }
       );
 
     await connectDB();
@@ -52,4 +52,4 @@ const POST = async (req) => {
   }
 };
 
-export default POST;
+export { POST };
