@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
       dir="rtl"
       className={`${faFont.variable} ${enFont.variable} text-base`}
     >
-      <body className="container">
+      <body className="container max-w-7xl mx-auto">
         <Layout>{children}</Layout>
       </body>
     </html>
