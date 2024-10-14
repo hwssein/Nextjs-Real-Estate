@@ -46,6 +46,7 @@ const authOption = {
   basePath: "/api/auth",
   secret: process.env.AUTH_SECRET,
   adapter: MongoDBAdapter(client),
+  session: { strategy: "jwt" },
 };
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authOption);
