@@ -4,6 +4,9 @@ import { Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import Layout from "src/components/layout/Layout";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const enFont = Noto_Sans({
   subsets: ["latin"],
   display: "swap",
@@ -29,6 +32,15 @@ export default function RootLayout({ children }) {
     >
       <body className="container max-w-7xl mx-auto">
         <Layout>{children}</Layout>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={true}
+          theme="light"
+        />
       </body>
     </html>
   );
