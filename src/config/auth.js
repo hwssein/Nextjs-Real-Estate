@@ -35,7 +35,7 @@ const credentialsOption = Credentials({
 
       return { email };
     } catch (error) {
-      console.log("can not connect to server\n", error);
+      console.log("error:", error.message);
       return null;
     }
   },

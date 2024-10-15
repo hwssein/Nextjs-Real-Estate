@@ -35,7 +35,7 @@ function SignUp() {
 
     if (result?.message) {
       toast.success(result.message);
-      router.push("/");
+      router.replace("/");
     }
 
     setForm({
@@ -58,7 +58,7 @@ function SignUp() {
 
       <p className="p-1">
         حساب کاربری ایجاد کرده اید؟ از این{" "}
-        <Link href="signIn" className="text-primary">
+        <Link href="signIn" replace={true} className="text-primary">
           لینک
         </Link>{" "}
         وارد شوید
