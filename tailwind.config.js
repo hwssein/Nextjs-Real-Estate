@@ -19,7 +19,7 @@ module.exports = {
       bgMain: "#f5f5f5",
       primary: "#be123c",
       primaryHover: "#9f1239",
-      secondary: "#262626",
+      secondary: "#c2c2c2",
     },
   },
   plugins: [],

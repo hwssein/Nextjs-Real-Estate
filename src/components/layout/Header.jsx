@@ -5,6 +5,7 @@ import { useState } from "react";
 import ResMenu from "../module/ResMenu";
 
 import { FaBars } from "react-icons/fa6";
+import Link from "next/link";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -27,8 +28,13 @@ function Header() {
         </div>
 
         <div className="flex items-center justify-start gap-4">
-          <button className="button1">ورود</button>
-          <button className="button2">ثبت نام</button>
+          <Link href="/signIn">
+            <button className="button1">ورود</button>
+          </Link>
+
+          <Link href="/signUp">
+            <button className="button2">ثبت نام</button>
+          </Link>
         </div>
       </div>
     </>

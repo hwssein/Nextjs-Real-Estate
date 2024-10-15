@@ -2,7 +2,7 @@
   --bg-main: #f5f5f5;
   --primary: #be123c;
   --primary-hover: #9f1239;
-  --secondary: #262626;
+  --secondary: #c2c2c2;
 }
 
 * {
@@ -41,4 +41,8 @@ body {
 
 .button3 {
   @apply py-1 px-3 border-b border-primary border-opacity-0 hover:border-opacity-100 transition ease-in duration-100;
+}
+
+.form_input {
+  @apply w-2/3 p-2 bg-bgMain rounded border border-secondary focus:border-primary text-xs transition ease-in duration-100;
 }
