@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 import AuthForm from "@/module/AuthForm";
+import AuthProviders from "@/module/AuthProviders";
 import signInHandler from "@/serverAction/signInHandler";
 
 import { toast } from "react-toastify";
@@ -54,6 +55,8 @@ function SignIn() {
           changeHandler={changeHandler}
           handleSubmit={handleSubmit}
         />
+
+        <AuthProviders />
       </div>
 
       <p className="p-1">

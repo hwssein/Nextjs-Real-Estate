@@ -13,7 +13,7 @@ function AuthForm({ handleSubmit, changeHandler, form }) {
     <>
       <form
         action={handleSubmit}
-        className="w-full flex flex-col items-center justify-start gap-4 pb-9"
+        className="w-full flex flex-col items-center justify-start gap-4 pb-6"
       >
         <div className="w-full flex flex-row items-center justify-center gap-1">
           <label className="p-2 text-primary mr-2" htmlFor="email-text">
