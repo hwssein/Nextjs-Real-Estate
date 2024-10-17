@@ -1,12 +1,13 @@
+import client from "@/lib/db";
+import { verifyPassword } from "@/utils/verify";
+import connectDB from "@/utils/connectDB";
+import Users from "@/models/Users";
+
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
-import connectDB from "@/utils/connectDB";
-import RealEstateUser from "@/models/RealEstateUser";
-import { verifyPassword } from "@/utils/verify";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import client from "@/lib/db";
 
 const credentialsOption = Credentials({
   name: "credentials",
@@ -22,7 +23,7 @@ const credentialsOption = Credentials({
 
       await connectDB();
 
-      const existingUser = await RealEstateUser.findOne({ email });
+      const existingUser = await Users.findOne({ email });
 
       if (!existingUser) throw new Error("ایمیل یا رمز عبور اشتباه است");
 
@@ -42,11 +43,24 @@ const credentialsOption = Credentials({
 });
 
 const authOption = {
-  providers: [Google, GitHub, credentialsOption],
+  providers: [
+    Google({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+    }),
+    GitHub({
+      clientId: process.env.AUTH_GITHUB_ID,
+      clientSecret: process.env.AUTH_GITHUB_SECRET,
+    }),
+    credentialsOption,
+  ],
   basePath: "/api/auth",
   secret: process.env.AUTH_SECRET,
   adapter: MongoDBAdapter(client),
   session: { strategy: "jwt" },
+  pages: {
+    signIn: "/signIn",
+  },
 };
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authOption);

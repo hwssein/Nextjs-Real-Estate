@@ -1,4 +1,4 @@
-import RealEstateUser from "@/models/RealEstateUser";
+import Users from "@/models/Users";
 import connectDB from "@/utils/connectDB";
 import { hashPassword } from "@/utils/verify";
 import { NextResponse } from "next/server";
@@ -24,7 +24,7 @@ const POST = async (req) => {
 
     await connectDB();
 
-    const existingUser = await RealEstateUser.findOne({ email });
+    const existingUser = await Users.findOne({ email });
 
     if (existingUser)
       return NextResponse.json(
@@ -34,7 +34,7 @@ const POST = async (req) => {
 
     const hashedPassword = await hashPassword(password);
 
-    const user = await RealEstateUser.create({
+    const user = await Users.create({
       email,
       password: hashedPassword,
     });

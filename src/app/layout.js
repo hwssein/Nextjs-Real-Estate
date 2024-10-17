@@ -3,9 +3,10 @@ import { Noto_Sans_Arabic } from "next/font/google";
 
 import "./globals.css";
 import Layout from "src/components/layout/Layout";
+import SessionsProvider from "@/providers/SessionsProvider";
 
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.min.css";
 
 const enFont = Noto_Sans({
   subsets: ["latin"],
@@ -31,16 +32,18 @@ export default function RootLayout({ children }) {
       className={`${faFont.variable} ${enFont.variable} text-base`}
     >
       <body className="container max-w-7xl mx-auto">
-        <Layout>{children}</Layout>
-        <ToastContainer
-          position="bottom-left"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={true}
-          theme="light"
-        />
+        <SessionsProvider>
+          <Layout>{children}</Layout>
+          <ToastContainer
+            position="bottom-left"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={true}
+            theme="light"
+          />
+        </SessionsProvider>
       </body>
     </html>
   );
