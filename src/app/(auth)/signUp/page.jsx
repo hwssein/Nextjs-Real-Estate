@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import AuthForm from "@/module/AuthForm";
 import signUpHandler from "@/serverAction/signUpHandler";
@@ -11,6 +12,11 @@ import { toast } from "react-toastify";
 
 function SignUp() {
   const router = useRouter();
+  const { status: session } = useSession();
+
+  useEffect(() => {
+    if (session === "authenticated") router.replace("/dashboard");
+  }, [router, session]);
 
   const [form, setForm] = useState({
     email: "",

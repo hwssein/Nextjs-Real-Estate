@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -9,9 +9,15 @@ import AuthProviders from "@/module/AuthProviders";
 import signInHandler from "@/serverAction/signInHandler";
 
 import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
 
 function SignIn() {
   const router = useRouter();
+  const { status: session } = useSession();
+
+  useEffect(() => {
+    if (session === "authenticated") router.replace("/dashboard");
+  }, [router, session]);
 
   const [form, setForm] = useState({
     email: "",
@@ -36,7 +42,7 @@ function SignIn() {
 
     if (result?.message) {
       toast.success("با موفقیت وارد شدید");
-      router.replace("/");
+      window.location.replace("/");
     }
 
     setForm({

@@ -1,6 +1,11 @@
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { IoCloseSharp } from "react-icons/io5";
 
 function ResMenu({ setShowMenu }) {
+  const { status: session } = useSession();
+
+  console.log(session);
   return (
     <>
       <div className="w-full h-full fixed top-0 right-0 bg-bgMain">
@@ -17,15 +22,30 @@ function ResMenu({ setShowMenu }) {
             <span>آگهی ها</span>
           </li>
 
-          <li className="flex flex-row items-center justify-start gap-2 group">
-            <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
-            <span>ورود</span>
-          </li>
-
-          <li className="flex flex-row items-center justify-start gap-2 group">
-            <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
-            <span>ثبت نام</span>
-          </li>
+          {session === "authenticated" ? (
+            <Link href="/dashboard" onClick={() => setShowMenu(false)}>
+              <li className="flex flex-row items-center justify-start gap-2 group">
+                <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
+                <span>داشبورد</span>
+              </li>
+            </Link>
+          ) : (
+            <>
+              {" "}
+              <Link href="/signIn">
+                <li className="flex flex-row items-center justify-start gap-2 group">
+                  <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
+                  <span>ورود</span>
+                </li>
+              </Link>
+              <Link href="/signUp">
+                <li className="flex flex-row items-center justify-start gap-2 group">
+                  <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
+                  <span>ثبت نام</span>
+                </li>
+              </Link>
+            </>
+          )}
         </ul>
       </div>
     </>

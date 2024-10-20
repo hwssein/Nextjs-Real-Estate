@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 import ResMenu from "../module/ResMenu";
 
 import { FaBars } from "react-icons/fa6";
-import Link from "next/link";
 
 function Header() {
+  const { status: session } = useSession();
+
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -27,15 +30,27 @@ function Header() {
           </div>
         </div>
 
-        <div className="flex items-center justify-start gap-4">
-          <Link href="/signIn">
-            <button className="button1">ورود</button>
-          </Link>
+        {session === "authenticated" ? (
+          <div className="flex items-center justify-start gap-4">
+            <Link href="/dashboard">
+              <button className="button1">داشبورد</button>
+            </Link>
 
-          <Link href="/signUp">
-            <button className="button2">ثبت نام</button>
-          </Link>
-        </div>
+            <Link href="/#">
+              <button className="button2">ثبت آگهی</button>
+            </Link>
+          </div>
+        ) : (
+          <div className="flex items-center justify-start gap-4">
+            <Link href="/signIn">
+              <button className="button1">ورود</button>
+            </Link>
+
+            <Link href="/signUp">
+              <button className="button2">ثبت نام</button>
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

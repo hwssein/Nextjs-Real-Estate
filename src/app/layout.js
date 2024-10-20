@@ -34,16 +34,16 @@ export default function RootLayout({ children }) {
       <body className="container max-w-7xl mx-auto">
         <SessionsProvider>
           <Layout>{children}</Layout>
-          <ToastContainer
-            position="bottom-left"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={true}
-            theme="light"
-          />
         </SessionsProvider>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={true}
+          theme="light"
+        />
       </body>
     </html>
   );
