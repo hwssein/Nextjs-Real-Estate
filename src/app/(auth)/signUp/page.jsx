@@ -1,74 +1,15 @@
-"use client";
+import { auth } from "@/config/auth";
+import { redirect } from "next/navigation";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import SignUpPage from "@/template/SignUpPage";
 
-import AuthForm from "@/module/AuthForm";
-import signUpHandler from "@/serverAction/signUpHandler";
-
-import { toast } from "react-toastify";
-
-function SignUp() {
-  const router = useRouter();
-  const { status: session } = useSession();
-
-  useEffect(() => {
-    if (session === "authenticated") router.replace("/dashboard");
-  }, [router, session]);
-
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-
-  const changeHandler = (event) => {
-    const { name, value } = event.target;
-
-    setForm({
-      ...form,
-      [name]: name === "email" ? value.trim().toLowerCase() : value.trim(),
-    });
-  };
-
-  const handleSubmit = async () => {
-    const result = await signUpHandler(form);
-
-    if (result?.error) {
-      toast.error(result.error);
-    }
-
-    if (result?.message) {
-      toast.success(result.message);
-      router.replace("/");
-    }
-
-    setForm({
-      email: "",
-      password: "",
-    });
-  };
+async function SignUp() {
+  const session = await auth();
+  if (session) redirect("/dashboard");
 
   return (
     <>
-      <div className="w-full text-center rounded shadow-md p-1 mb-2">
-        <p className="text-primary mb-7 font-medium">ثبت نام در املاک کویر</p>
-
-        <AuthForm
-          handleSubmit={handleSubmit}
-          changeHandler={changeHandler}
-          form={form}
-        />
-      </div>
-
-      <p className="p-1">
-        حساب کاربری ایجاد کرده اید؟ از این{" "}
-        <Link href="signIn" replace={true} className="text-primary">
-          لینک
-        </Link>{" "}
-        وارد شوید
-      </p>
+      <SignUpPage />
     </>
   );
 }
