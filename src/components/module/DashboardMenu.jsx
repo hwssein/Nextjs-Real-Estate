@@ -1,3 +1,4 @@
+import SignOutButton from "@/element/SignOutButton";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 
@@ -37,7 +38,7 @@ function DashboardMenu({ user }) {
 
           <li className="flex flex-row items-center justify-start gap-2 group">
             <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
-            <span>خروج</span>
+            <SignOutButton />
           </li>
         </ul>
       </div>
