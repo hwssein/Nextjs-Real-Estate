@@ -15,7 +15,7 @@ function Header() {
 
   return (
     <>
-      <div className="w-full flex flex-row items-center justify-between my-4 py-2 ">
+      <header className="w-full flex flex-row items-center justify-between my-4 py-2 ">
         {showMenu && <ResMenu setShowMenu={setShowMenu} />}
 
         <div className="flex items-center justify-start gap-4">
@@ -51,7 +51,7 @@ function Header() {
             </Link>
           </div>
         )}
-      </div>
+      </header>
     </>
   );
 }

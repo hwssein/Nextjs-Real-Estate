@@ -10,7 +10,7 @@ function Layout({ children }) {
   if (pathName === "/signIn" || pathName === "/signUp") {
     return (
       <>
-        <main className="container max-w-lg mx-auto">{children}</main>
+        <div className="container max-w-lg mx-auto">{children}</div>
       </>
     );
   }

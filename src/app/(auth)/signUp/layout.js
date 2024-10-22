@@ -1,6 +1,6 @@
 import Footer from "@/layout/Footer";
 
-function Layout({ children }) {
+function SignUpLayout({ children }) {
   return (
     <>
       <header className="w-full text-center mt-4 mb-12">
@@ -15,4 +15,4 @@ function Layout({ children }) {
   );
 }
 
-export default Layout;
+export default SignUpLayout;
