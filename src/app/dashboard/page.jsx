@@ -1,7 +1,9 @@
-import DashboardPage from "@/template/dashboardPage";
+import findUser from "@/serverAction/findUser";
+import DashboardPage from "@/template/DashboardPage";
 
-function Dashboard() {
-  return <DashboardPage />;
+async function Dashboard() {
+  const user = await findUser();
+  return <DashboardPage createdAt={user.createdAt} />;
 }
 
 export default Dashboard;
