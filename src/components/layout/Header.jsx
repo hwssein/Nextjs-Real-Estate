@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
-import ResMenu from "../module/ResMenu";
+import ResMenu from "./ResMenu";
 
 import { FaBars } from "react-icons/fa6";
 
@@ -36,8 +36,8 @@ function Header() {
               <button className="button1">داشبورد</button>
             </Link>
 
-            <Link href="/#">
-              <button className="button2">ثبت آگهی</button>
+            <Link href="/#" className="sm:hidden">
+              <button className="button2">آگهی ها</button>
             </Link>
           </div>
         ) : (
