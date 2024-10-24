@@ -29,7 +29,7 @@ function DashboardMenu({ user }) {
             </li>
           </Link>
 
-          <Link href="#">
+          <Link href="/dashboard/add-post">
             <li className="flex flex-row items-center justify-start gap-2 group">
               <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
               <span>ثبت آگهی</span>

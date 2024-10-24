@@ -8,9 +8,9 @@ async function DashboardLayout({ children }) {
   if (!session) redirect("/signIn");
   return (
     <>
-      <div className="w-full flex flex-row items-start justify-start gap-6 px-1 ">
+      <div className="w-full flex flex-row items-start justify-start gap-12 px-1 ">
         <DashboardSidebar user={session} />
-        <section>{children}</section>
+        <section className="w-full">{children}</section>
       </div>
     </>
   );
