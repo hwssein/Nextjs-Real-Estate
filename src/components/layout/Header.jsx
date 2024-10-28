@@ -18,11 +18,11 @@ function Header() {
       <header className="w-full flex flex-row items-center justify-between my-4 py-2 ">
         {showMenu && <ResMenu setShowMenu={setShowMenu} />}
 
-        <div className="flex items-center justify-start gap-4">
+        <div className="flex items-center justify-start gap-2">
           <div className="p-1 sm:hidden" onClick={() => setShowMenu(true)}>
             <FaBars color="var(--primary)" size="1.2rem" />
           </div>
-          <div className="font-black text-2xl text-primary">املاک کویر</div>
+          <div className="font-black text-3xl text-primary">املاک کویر</div>
 
           <div className="hidden items-center justify-start gap-4 mr-10 sm:flex">
             <span className="p-1">صفحه اصلی</span>
@@ -31,7 +31,7 @@ function Header() {
         </div>
 
         {session === "authenticated" ? (
-          <div className="flex items-center justify-start gap-4">
+          <div className="flex items-center justify-start gap-1 sm:gap-3 ">
             <Link href="/dashboard">
               <button className="button1">داشبورد</button>
             </Link>
@@ -41,7 +41,7 @@ function Header() {
             </Link>
           </div>
         ) : (
-          <div className="flex items-center justify-start gap-4">
+          <div className="flex items-center justify-start gap-1 sm:gap-3">
             <Link href="/signIn">
               <button className="button1">ورود</button>
             </Link>

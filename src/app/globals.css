@@ -41,15 +41,15 @@ a {
 }
 
 .button1 {
-  @apply py-1 px-3 bg-primary rounded text-bgMain hover:bg-primaryHover transition ease-in duration-100;
+  @apply h-8 py-1 px-3 bg-primary rounded text-bgMain hover:bg-primaryHover transition ease-in duration-100;
 }
 
 .button2 {
-  @apply py-1 px-3 border-2 border-primary text-primary rounded hover:border-primaryHover transition ease-in duration-100;
+  @apply h-8 py-1 px-3 border-2 border-primary text-primary rounded hover:border-primaryHover transition ease-in duration-100;
 }
 
 .button3 {
-  @apply py-1 px-3 border-b border-primary border-opacity-0 hover:border-opacity-100 transition ease-in duration-100;
+  @apply h-8 py-1 px-3 border-b border-primary border-opacity-0 hover:border-opacity-100 transition ease-in duration-100;
 }
 
 .form_input {
