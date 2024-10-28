@@ -10,8 +10,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--fa-font)"],
-        mono: ["var(--en-font)"],
+        sans: ["Zain", "sans-serif"],
+        mono: ["Montserrat", "sans-serif"],
       },
     },
 

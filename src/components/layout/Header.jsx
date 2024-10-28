@@ -22,7 +22,7 @@ function Header() {
           <div className="p-1 sm:hidden" onClick={() => setShowMenu(true)}>
             <FaBars color="var(--primary)" size="1.2rem" />
           </div>
-          <div className="font-bold text-2xl text-primary">املاک کویر</div>
+          <div className="font-black text-2xl text-primary">املاک کویر</div>
 
           <div className="hidden items-center justify-start gap-4 mr-10 sm:flex">
             <span className="p-1">صفحه اصلی</span>

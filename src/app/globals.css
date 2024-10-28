@@ -1,3 +1,5 @@
+@import url("../config/fonts.css");
+
 :root {
   --bg-main: #f5f5f5;
   --primary: #be123c;
@@ -13,6 +15,7 @@
   list-style-type: none;
   border: none;
   outline: none;
+  font-family: "Zain", sans-serif;
 }
 
 a {
