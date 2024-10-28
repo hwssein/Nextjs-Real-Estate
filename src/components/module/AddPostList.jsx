@@ -36,18 +36,18 @@ function AddPostList({ name }) {
                 className="form_input"
                 onChange={(event) => changeHandler(event, index)}
               />
-              <button
+              <span
                 onClick={() => removeList(index)}
-                className="text-primary"
+                className="text-primary cursor-pointer"
               >
                 حذف
-              </button>
+              </span>
             </div>
           ))}
         </div>
-        <button onClick={addNew} className="button2">
+        <span onClick={addNew} className="button2 cursor-pointer">
           افزودن
-        </button>
+        </span>
       </div>
     </>
   );

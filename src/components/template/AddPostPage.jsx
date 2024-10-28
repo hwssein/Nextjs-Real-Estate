@@ -1,17 +1,35 @@
+"use client";
+
+import FormButton from "@/element/FormButton";
 import AddPostDate from "@/module/AddPostDate";
 import AddPostForm from "@/module/AddPostForm";
 import AddPostList from "@/module/AddPostList";
 import AddPostRadio from "@/module/AddPostRadio";
 import submitPost from "@/serverAction/submitPost";
+import { useRef } from "react";
+import { toast } from "react-toastify";
 
 function AddPostPage() {
+  const formRef = useRef(null);
+
+  const submitHandler = async (formData) => {
+    const res = await submitPost(formData);
+
+    if (res.message) {
+      toast.success(res.message);
+      formRef.current.reset();
+    }
+
+    if (res.error) toast.error(res.error);
+  };
+
   return (
     <>
       <div className="inline-block bg-secondary px-4 py-2 rounded mb-6">
         ثبت آگهی
       </div>
 
-      <form action={submitPost} className="w-full">
+      <form ref={formRef} action={submitHandler} className="w-full">
         <AddPostForm
           type="text"
           textArea={false}
@@ -62,9 +80,9 @@ function AddPostPage() {
         <div className="w-full block mb-2">تاریخ ساخت</div>
         <AddPostDate />
 
-        <button type="submit" className="button1 w-full mt-4">
-          ثبت
-        </button>
+        <div className="mt-6">
+          <FormButton text="ثبت" width="w-full" />
+        </div>
       </form>
     </>
   );

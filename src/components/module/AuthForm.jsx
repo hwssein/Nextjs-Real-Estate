@@ -63,7 +63,7 @@ function AuthForm({ handleSubmit, changeHandler, form }) {
           </div>
         </div>
 
-        <FormButton />
+        <FormButton text="ورود" width="w-28" />
       </form>
     </>
   );
