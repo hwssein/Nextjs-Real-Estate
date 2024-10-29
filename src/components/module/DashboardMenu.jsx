@@ -15,14 +15,14 @@ function DashboardMenu({ user }) {
         <span className="bg-secondary w-4/5 h-px mt-4"></span>
 
         <ul className="w-full flex flex-col gap-4 items-start justify-start mt-4 px-4">
-          <Link href="#">
+          <Link href="/dashboard">
             <li className="flex flex-row items-center justify-start gap-2 group">
               <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
               <span>حساب کاربری</span>
             </li>
           </Link>
 
-          <Link href="#">
+          <Link href="/dashboard/my-post">
             <li className="flex flex-row items-center justify-start gap-2 group">
               <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
               <span>آگهی های من</span>

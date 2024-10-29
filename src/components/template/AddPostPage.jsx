@@ -25,7 +25,7 @@ function AddPostPage() {
 
   return (
     <>
-      <div className="inline-block bg-secondary px-4 py-2 rounded mb-6">
+      <div className="w-full text-center p-2 bg-secondary rounded mb-6">
         ثبت آگهی
       </div>
 
