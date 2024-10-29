@@ -20,16 +20,7 @@ const getUserPost = async () => {
       },
     ]);
 
-    const updatePost = userPost[0].posts.map((post) => ({
-      ...post,
-      _id: post._id.toString(),
-      userId: post.userId.toString(),
-      createdAt: post.createdAt.toISOString(),
-      updatedAt: post.updatedAt.toISOString(),
-      constructionDate: post.constructionDate.toISOString(),
-    }));
-
-    return updatePost;
+    return JSON.parse(JSON.stringify(userPost[0].posts));
   } catch (error) {
     return { error: error.message };
   }
