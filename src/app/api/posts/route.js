@@ -19,7 +19,7 @@ const POST = async (req) => {
       constructionDate,
     } = await req.json();
 
-    const regex = /^09\d{9}$/;
+    const regex = /^9\d{9}$/;
     const telNumberResult = regex.test(telNumber);
 
     if (
@@ -80,7 +80,7 @@ const PATCH = async (req) => {
       id,
     } = await req.json();
 
-    const regex = /^09\d{9}$/;
+    const regex = /^9\d{9}$/;
     const telNumberResult = regex.test(telNumber);
 
     if (

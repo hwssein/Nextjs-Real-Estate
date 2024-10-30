@@ -16,15 +16,34 @@ function AddPostForm({ textArea, type, name, title, defaultValue }) {
           </>
         ) : (
           <>
-            <label htmlFor={`${name}-id`}>{title}</label>
-            <input
-              type={type}
-              name={name}
-              id={`${name}-id`}
-              className="form_input"
-              required
-              defaultValue={defaultValue}
-            />
+            {name === "telNumber" ? (
+              <>
+                <label htmlFor={`${name}-id`}>{title}</label>
+                <div className="w-[calc(100%-50px)]">
+                  <input
+                    type={type}
+                    name={name}
+                    id={`${name}-id`}
+                    className="form_input"
+                    required
+                    defaultValue={defaultValue}
+                  />
+                  <span className="p-1 bg-secondary rounded m-1">98+</span>
+                </div>
+              </>
+            ) : (
+              <>
+                <label htmlFor={`${name}-id`}>{title}</label>
+                <input
+                  type={type}
+                  name={name}
+                  id={`${name}-id`}
+                  className="form_input"
+                  required
+                  defaultValue={defaultValue}
+                />
+              </>
+            )}
           </>
         )}
       </div>
