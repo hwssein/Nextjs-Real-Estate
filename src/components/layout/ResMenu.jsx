@@ -1,13 +1,10 @@
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 import DashboardMenu from "@/module/DashboardMenu";
 
 import { IoCloseSharp } from "react-icons/io5";
 
-function ResMenu({ setShowMenu }) {
-  const { data: session, status } = useSession();
-
+function ResMenu({ setShowMenu, status, session }) {
   return (
     <>
       <div className="w-full h-full fixed top-0 right-0 bg-bgMain">
@@ -20,7 +17,7 @@ function ResMenu({ setShowMenu }) {
 
         <ul className="my-1 px-4 flex flex-col items-start justify-start gap-4 ">
           {status === "authenticated" ? (
-            <DashboardMenu user={session} />
+            <DashboardMenu clientUser={session} />
           ) : (
             <>
               {" "}

@@ -2,7 +2,7 @@ import SignOutButton from "@/element/SignOutButton";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 
-function DashboardMenu({ user }) {
+function DashboardMenu({ user, clientUser }) {
   return (
     <>
       <div className="w-full flex flex-col items-center justify-start">
@@ -10,7 +10,17 @@ function DashboardMenu({ user }) {
           <CgProfile fontSize="3rem" color="var(--primary-hover)" />
         </span>
 
-        <span className="mt-4 text-secondary">{user?.email}</span>
+        {clientUser && (
+          <span className="mt-4 text-secondary font-mono font-bold">
+            {clientUser?.user.email}
+          </span>
+        )}
+
+        {user && (
+          <span className="mt-4 text-secondary font-mono font-bold">
+            {user?.email}
+          </span>
+        )}
 
         <span className="bg-secondary w-4/5 h-px mt-4"></span>
 

@@ -1,22 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
-import ResMenu from "./ResMenu";
+import ResMenu from "@/layout/ResMenu";
 
 import { FaBars } from "react-icons/fa6";
 
 function Header() {
-  const { status: session } = useSession();
+  const { data: session, status } = useSession();
+  const pathName = usePathname();
 
   const [showMenu, setShowMenu] = useState(false);
 
+  if (pathName === "/signIn" || pathName === "/signUp") {
+    return null;
+  }
+
   return (
     <>
-      <header className="w-full flex flex-row items-center justify-between my-4 py-2 ">
-        {showMenu && <ResMenu setShowMenu={setShowMenu} />}
+      <header className="w-full flex flex-row items-center justify-between mb-7 py-2 ">
+        {showMenu && (
+          <ResMenu
+            setShowMenu={setShowMenu}
+            session={session}
+            status={status}
+          />
+        )}
 
         <div className="flex items-center justify-start gap-2">
           <div className="p-1 sm:hidden" onClick={() => setShowMenu(true)}>
@@ -25,12 +37,17 @@ function Header() {
           <div className="font-black text-3xl text-primary">املاک کویر</div>
 
           <div className="hidden items-center justify-start gap-4 mr-10 sm:flex">
-            <span className="p-1">صفحه اصلی</span>
-            <span className="p-1">آگهی ها</span>
+            <Link href="/">
+              <span className="p-1">صفحه اصلی</span>
+            </Link>
+
+            <Link href="#">
+              <span className="p-1">آگهی ها</span>
+            </Link>
           </div>
         </div>
 
-        {session === "authenticated" ? (
+        {status === "authenticated" ? (
           <div className="flex items-center justify-start gap-1 sm:gap-3 ">
             <Link href="/dashboard">
               <button className="button1">داشبورد</button>

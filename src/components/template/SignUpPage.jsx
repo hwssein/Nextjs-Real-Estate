@@ -47,7 +47,9 @@ function SignUpPage() {
   return (
     <>
       <div className="w-full text-center rounded shadow-md p-1 mb-2">
-        <p className="text-primary mb-7 font-medium">ثبت نام در املاک کویر</p>
+        <p className="text-primary mb-7 font-black text-2xl">
+          ثبت نام در املاک کویر
+        </p>
 
         <AuthForm
           handleSubmit={handleSubmit}

@@ -48,10 +48,6 @@ a {
   @apply h-8 py-1 px-3 border-2 border-primary text-primary rounded hover:border-primaryHover transition ease-in duration-100;
 }
 
-.button3 {
-  @apply h-8 py-1 px-3 border-b border-primary border-opacity-0 hover:border-opacity-100 transition ease-in duration-100;
-}
-
 .form_input {
-  @apply w-2/3 p-2 bg-bgMain rounded border border-secondary focus:border-primary text-xs transition ease-in duration-100;
+  @apply w-2/3 p-2 bg-bgMain rounded border border-secondary focus:border-primary text-base transition ease-in duration-100;
 }

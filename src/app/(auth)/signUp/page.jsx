@@ -9,7 +9,9 @@ async function SignUp() {
 
   return (
     <>
-      <SignUpPage />
+      <div className="w-full max-w-xl mx-auto mt-20">
+        <SignUpPage />
+      </div>
     </>
   );
 }

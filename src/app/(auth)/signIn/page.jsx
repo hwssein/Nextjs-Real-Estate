@@ -9,7 +9,9 @@ async function SignIn() {
 
   return (
     <>
-      <SignInPage />
+      <div className="w-full max-w-xl mx-auto mt-20">
+        <SignInPage />
+      </div>
     </>
   );
 }

@@ -45,7 +45,10 @@ function SignInPage() {
   return (
     <>
       <div className="w-full text-center rounded shadow-md p-1 mb-2">
-        <p className="text-primary mb-7 font-medium"> ورود به املاک کویر</p>
+        <p className="text-primary mb-7 font-black text-2xl">
+          {" "}
+          ورود به املاک کویر
+        </p>
 
         <AuthForm
           form={form}
