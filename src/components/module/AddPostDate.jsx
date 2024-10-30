@@ -6,8 +6,8 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 
-function AddPostDate() {
-  const [date, setDate] = useState(new Date());
+function AddPostDate({ value }) {
+  const [date, setDate] = useState(new Date(value));
 
   const changeHandler = (event) => {
     const updateDate = new Date(event);

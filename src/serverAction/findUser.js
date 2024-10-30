@@ -9,10 +9,10 @@ const findUser = async () => {
     await connectDB();
 
     const session = await auth();
-    if (!session) throw new Error("401 - unauthorized - session");
+    if (!session) throw new Error("لطفا وارد حساب کاربری خود شوید");
 
     const user = await Users.findOne({ email: session.user.email });
-    if (!user) throw new Error("401 - unauthorized - user");
+    if (!user) throw new Error("حساب کاربری وجود ندارد");
 
     return user;
   } catch (error) {

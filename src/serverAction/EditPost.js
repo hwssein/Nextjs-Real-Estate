@@ -1,14 +1,19 @@
 "use server";
 
-import { convertToISO } from "@/utils/replaceNumber";
+import Posts from "@/models/Posts";
 import findUser from "@/serverAction/findUser";
+import { convertToISO } from "@/utils/replaceNumber";
 
-const submitPost = async (formData) => {
+const editPost = async (formData, id) => {
   try {
     const user = await findUser();
     if (user.error) throw new Error(user.error);
 
-    formData.append("_id", user._id);
+    const post = await Posts.findOne({ _id: id });
+    if (!user._id.equals(post.userId))
+      throw new Error("دسترسی شما به این آگهی محدود شده است");
+
+    formData.append("id", id);
 
     const formDataObject = {};
 
@@ -30,7 +35,7 @@ const submitPost = async (formData) => {
     }
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
-      method: "POST",
+      method: "PATCH",
       body: JSON.stringify(formDataObject),
       headers: { "Content-Type": "application/json" },
     });
@@ -38,10 +43,11 @@ const submitPost = async (formData) => {
     const data = await res.json();
 
     if (data.message) return { message: data.message };
+
     if (data.error) throw new Error(data.error);
   } catch (error) {
     return { error: error.message };
   }
 };
 
-export default submitPost;
+export default editPost;

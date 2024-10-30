@@ -1,11 +1,23 @@
 "use client";
 
 import Card from "@/module/Card";
+import deletePost from "@/serverAction/deletePost";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 function MyPostCard({ data }) {
-  const editHandler = () => {};
+  const router = useRouter();
 
-  const deleteHandler = () => {};
+  const editHandler = async () => {
+    router.push(`/dashboard/my-post/${data._id}`);
+  };
+
+  const deleteHandler = async () => {
+    const res = await deletePost(data._id);
+
+    if (res.message) toast.success(res.message);
+    if (res.error) toast.error(res.error);
+  };
 
   return (
     <>

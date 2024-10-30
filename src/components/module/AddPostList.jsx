@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-function AddPostList({ name }) {
-  const [list, setList] = useState([]);
+function AddPostList({ name, initialList }) {
+  const [list, setList] = useState(initialList || []);
 
   const changeHandler = (event, index) => {
     const { value } = event.target;

@@ -10,7 +10,7 @@ function DashboardMenu({ user }) {
           <CgProfile fontSize="3rem" color="var(--primary-hover)" />
         </span>
 
-        <span className="mt-4 text-secondary">{user?.user?.email}</span>
+        <span className="mt-4 text-secondary">{user?.email}</span>
 
         <span className="bg-secondary w-4/5 h-px mt-4"></span>
 

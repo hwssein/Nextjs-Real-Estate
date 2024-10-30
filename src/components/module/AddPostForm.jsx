@@ -1,4 +1,4 @@
-function AddPostForm({ textArea, type, name, title }) {
+function AddPostForm({ textArea, type, name, title, defaultValue }) {
   return (
     <>
       <div className="w-full flex flex-col items-start justify-start gap-2 mb-4">
@@ -11,6 +11,7 @@ function AddPostForm({ textArea, type, name, title }) {
               id={`${name}-id`}
               className="form_input"
               required
+              defaultValue={defaultValue}
             ></textarea>
           </>
         ) : (
@@ -22,6 +23,7 @@ function AddPostForm({ textArea, type, name, title }) {
               id={`${name}-id`}
               className="form_input"
               required
+              defaultValue={defaultValue}
             />
           </>
         )}
