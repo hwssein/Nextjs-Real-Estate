@@ -1,10 +1,11 @@
-function AddPostRadio({ name, value, title }) {
+function AddPostRadio({ checked, value, title }) {
   return (
     <>
       <div className="flex">
         <input
           type="radio"
           name="category"
+          defaultChecked={checked}
           value={value}
           id={`${value}-id`}
           className="peer hidden"
