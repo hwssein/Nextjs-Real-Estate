@@ -12,7 +12,7 @@ const signInHandler = async (formData) => {
 
     if (res.error) throw new Error(res.error);
 
-    return { message: "success", data: res };
+    return { message: "success" };
   } catch (error) {
     return { error: error.message };
   }

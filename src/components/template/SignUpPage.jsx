@@ -35,6 +35,8 @@ function SignUpPage() {
 
     if (result?.message) {
       toast.success(result.message);
+      toast.success("لطفا وارد حساب خود شوید");
+
       router.replace("/");
     }
 
