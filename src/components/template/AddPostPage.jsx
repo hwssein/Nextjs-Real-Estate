@@ -36,7 +36,7 @@ function AddPostPage({ data }) {
 
     if (res?.message) {
       toast.success(res.message);
-      formRef.current.reset();
+      router.refresh();
     }
 
     if (res?.error) toast.error(res.error);
