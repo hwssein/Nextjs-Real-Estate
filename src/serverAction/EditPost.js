@@ -9,42 +9,61 @@ const editPost = async (formData, id) => {
     const user = await findUser();
     if (user.error) throw new Error(user.error);
 
-    const post = await Posts.findOne({ _id: id });
-    if (!user._id.equals(post.userId))
-      throw new Error("دسترسی شما به این آگهی محدود شده است");
-
-    formData.append("id", id);
-
-    const formDataObject = {};
-
     const date = formData.get("constructionDate");
     const newDate = convertToISO(date);
     formData.delete("constructionDate");
     formData.append("constructionDate", newDate);
 
-    for (const [key, value] of formData.entries()) {
-      if (formDataObject[key]) {
-        if (Array.isArray(formDataObject[key])) {
-          formDataObject[key].push(value);
-        } else {
-          formDataObject[key] = [formDataObject[key], value];
-        }
-      } else {
-        formDataObject[key] = value;
-      }
+    const postTitle = formData.get("postTitle");
+    const description = formData.get("description");
+    const address = formData.get("address");
+    const telNumber = formData.get("telNumber");
+    const price = formData.get("price");
+    const realEstate = formData.get("realEstate");
+    const category = formData.get("category");
+    const amenities = formData.getAll("amenities");
+    const rules = formData.getAll("rules");
+    const constructionDate = formData.get("constructionDate");
+
+    const regex = /^9\d{9}$/;
+    const telNumberResult = regex.test(telNumber);
+
+    if (
+      !postTitle ||
+      !description ||
+      !address ||
+      !telNumber ||
+      !telNumberResult ||
+      !price ||
+      !realEstate ||
+      !category ||
+      !constructionDate
+    )
+      throw new Error("اطلاعات وارد شده معتبر نیست");
+
+    const post = await Posts.findOne({ _id: id });
+    if (!user._id.equals(post.userId))
+      throw new Error("دسترسی شما به این آگهی محدود شده است");
+
+    try {
+      post.postTitle = postTitle;
+      post.description = description;
+      post.address = address;
+      post.telNumber = Number(telNumber);
+      post.price = Number(price);
+      post.realEstate = realEstate;
+      post.category = category;
+      post.amenities = amenities;
+      post.rules = rules;
+      post.constructionDate = constructionDate;
+
+      post.save();
+    } catch (error) {
+      console.log(error);
+      return { error: "مشکلی در سرور رخ داده" };
     }
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
-      method: "PATCH",
-      body: JSON.stringify(formDataObject),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    const data = await res.json();
-
-    if (data.message) return { message: data.message };
-
-    if (data.error) throw new Error(data.error);
+    return { message: "با موفقیت تغییر کرد" };
   } catch (error) {
     return { error: error.message };
   }
