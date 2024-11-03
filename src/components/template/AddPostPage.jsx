@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-import editPost from "@/serverAction/EditPost";
 import submitPost from "@/serverAction/submitPost";
+import editPost from "@/serverAction/editPost";
 
 import FormButton from "@/element/FormButton";
 import AddPostDate from "@/module/AddPostDate";
@@ -36,7 +36,7 @@ function AddPostPage({ data }) {
 
     if (res?.message) {
       toast.success(res.message);
-      router.refresh();
+      formRef.current.reset();
     }
 
     if (res?.error) toast.error(res.error);
