@@ -1,7 +1,7 @@
 import MyPostCard from "@/module/MyPostCard";
 
 function MyPostPage({ posts }) {
-  if (!posts || posts.length === 0)
+  if (!posts || !Array.isArray(posts) || posts.length === 0)
     return (
       <div className="w-full text-center p-2 bg-line rounded">
         هنوز آکهی ثبت نشده!
