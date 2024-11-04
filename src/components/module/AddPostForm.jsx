@@ -28,7 +28,7 @@ function AddPostForm({ textArea, type, name, title, defaultValue }) {
                     required
                     defaultValue={defaultValue}
                   />
-                  <span className="p-1 bg-secondary rounded m-1">98+</span>
+                  <span className="p-1 bg-line rounded m-1">98+</span>
                 </div>
               </>
             ) : (

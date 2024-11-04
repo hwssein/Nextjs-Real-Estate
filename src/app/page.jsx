@@ -1,5 +1,11 @@
-function HomePage() {
-  return <div>HomePage</div>;
+import HomePage from "@/template/HomePage";
+
+function MainPage() {
+  return (
+    <>
+      <HomePage />
+    </>
+  );
 }
 
-export default HomePage;
+export default MainPage;

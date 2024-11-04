@@ -12,7 +12,7 @@ function AddPostRadio({ checked, value, title }) {
         />
         <label
           htmlFor={`${value}-id`}
-          className="bg-secondary p-1 rounded w-20 text-center transition ease-in duration-100 peer-checked:bg-primary peer-checked:text-bgMain"
+          className="bg-line p-1 rounded w-20 text-center transition ease-in duration-100 peer-checked:bg-primary peer-checked:text-bgMain"
         >
           {title}
         </label>

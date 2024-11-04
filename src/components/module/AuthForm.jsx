@@ -35,7 +35,7 @@ function AuthForm({ handleSubmit, changeHandler, form }) {
             رمز عبور:
           </label>
 
-          <div className="group w-2/3 flex items-center justify-center gap-2 p-2 rounded border border-secondary focus-within:border-primary transition ease-in duration-100">
+          <div className="group w-2/3 flex items-center justify-center gap-2 p-2 rounded border border-line focus-within:border-primary transition ease-in duration-100">
             {showPassword ? (
               <span
                 className="cursor-pointer"

@@ -16,10 +16,11 @@ module.exports = {
     },
 
     colors: {
-      bgMain: "#f5f5f5",
-      primary: "#be123c",
-      primaryHover: "#9f1239",
-      secondary: "#c2c2c2",
+      bgMain: "#f5f5f4",
+      primary: "#0f766e",
+      darkPrimary: "#134e4a",
+      secondary: "#042f2e",
+      line: "#a1a1aa",
     },
   },
   plugins: [],

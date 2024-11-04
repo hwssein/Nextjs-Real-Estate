@@ -23,19 +23,19 @@ function ResMenu({ setShowMenu, status, session }) {
               {" "}
               <Link href="/signIn">
                 <li className="flex flex-row items-center justify-start gap-2 group">
-                  <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
+                  <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
                   <span>ورود</span>
                 </li>
               </Link>
               <Link href="/signUp">
                 <li className="flex flex-row items-center justify-start gap-2 group">
-                  <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
+                  <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
                   <span>ثبت نام</span>
                 </li>
               </Link>
               <Link href="#">
                 <li className="flex flex-row items-center justify-start gap-2 group">
-                  <span className="w-1 h-4 rounded bg-secondary group-hover:bg-primary transition ease-in duration-100"></span>
+                  <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
                   <span>آگهی ها</span>
                 </li>
               </Link>

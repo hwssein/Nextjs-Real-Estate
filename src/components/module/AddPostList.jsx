@@ -38,7 +38,7 @@ function AddPostList({ name, initialList }) {
               />
               <span
                 onClick={() => removeList(index)}
-                className="text-primary cursor-pointer"
+                className="text-secondary cursor-pointer"
               >
                 حذف
               </span>

@@ -1,10 +1,11 @@
 @import url("../config/fonts.css");
 
 :root {
-  --bg-main: #f5f5f5;
-  --primary: #be123c;
-  --primary-hover: #9f1239;
-  --secondary: #c2c2c2;
+  --bg-main: #f5f5f4;
+  --primary: #0f766e;
+  --dark-primary: #134e4a;
+  --secondary: #042f2e;
+  --line: #a1a1aa;
 }
 
 * {
@@ -41,13 +42,13 @@ a {
 }
 
 .button1 {
-  @apply h-8 py-1 px-3 bg-primary rounded text-bgMain hover:bg-primaryHover transition ease-in duration-100;
+  @apply h-8 py-1 px-3 bg-primary rounded text-bgMain hover:bg-darkPrimary transition ease-in duration-100;
 }
 
 .button2 {
-  @apply h-8 py-1 px-3 border-2 border-primary text-primary rounded hover:border-primaryHover transition ease-in duration-100;
+  @apply h-8 py-1 px-3 border-2 border-primary text-primary rounded hover:border-darkPrimary transition ease-in duration-100;
 }
 
 .form_input {
-  @apply w-2/3 p-2 bg-bgMain rounded border border-secondary focus:border-primary text-base transition ease-in duration-100;
+  @apply w-2/3 p-2 bg-bgMain rounded border border-line focus:border-primary text-base transition ease-in duration-100;
 }

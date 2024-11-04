@@ -55,7 +55,7 @@ function AddPostPage({ data }) {
 
   return (
     <>
-      <div className="w-full text-center p-2 bg-secondary rounded mb-6">
+      <div className="w-full text-center p-2 bg-line rounded mb-6">
         {data ? "ویرایش آگهی" : "ثبت آگهی"}
       </div>
 

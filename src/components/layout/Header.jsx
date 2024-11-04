@@ -21,7 +21,7 @@ function Header() {
 
   return (
     <>
-      <header className="w-full flex flex-row items-center justify-between mb-7 py-2 ">
+      <header className="w-full flex flex-row items-center justify-between mb-12 py-2 ">
         {showMenu && (
           <ResMenu
             setShowMenu={setShowMenu}

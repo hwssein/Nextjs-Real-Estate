@@ -32,8 +32,8 @@ const editPost = async (formData, id) => {
       !postTitle ||
       !description ||
       !address ||
-      !telNumber ||
       !telNumberResult ||
+      !telNumber ||
       !price ||
       !realEstate ||
       !category ||
