@@ -23,7 +23,7 @@ function Card({ data }) {
       <div className="w-full flex flex-col items-start justify-start gap-1 border border-line rounded p-2">
         <div className="w-full flex items-center justify-start gap-2">
           <span>{icon[data.category]}</span>
-          <span className="text-lg">{data.postTitle}</span>
+          <span className="text-lg break-words w-full">{data.postTitle}</span>
         </div>
 
         <span>{data.address}</span>

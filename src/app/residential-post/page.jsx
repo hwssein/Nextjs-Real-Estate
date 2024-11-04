@@ -1,9 +1,13 @@
+import getAllPosts from "@/serverAction/getAllPosts";
 import ResidentialPostPage from "@/template/ResidentialPostPage";
 
-function ResidentialPost() {
+async function ResidentialPost() {
+  const posts = await getAllPosts();
+  const jsPosts = JSON.parse(JSON.stringify(posts));
+
   return (
     <>
-      <ResidentialPostPage />
+      <ResidentialPostPage data={jsPosts} />
     </>
   );
 }
