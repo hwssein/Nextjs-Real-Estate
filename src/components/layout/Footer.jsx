@@ -42,7 +42,9 @@ function Footer() {
             target="_blank"
             className="text-bgMain"
           >
-            <p className="text-bgMain">توسعه داده شده توسط hwssein</p>
+            <p className="text-bgMain">
+              توسعه داده شده توسط <span className="font-mono">hwssein</span>
+            </p>
           </Link>
         </div>
       </footer>

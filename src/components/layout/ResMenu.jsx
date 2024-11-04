@@ -33,7 +33,7 @@ function ResMenu({ setShowMenu, status, session }) {
                   <span>ثبت نام</span>
                 </li>
               </Link>
-              <Link href="#">
+              <Link href="/residential-post">
                 <li className="flex flex-row items-center justify-start gap-2 group">
                   <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
                   <span>آگهی ها</span>

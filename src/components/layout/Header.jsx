@@ -41,7 +41,7 @@ function Header() {
               <span className="p-1">صفحه اصلی</span>
             </Link>
 
-            <Link href="#">
+            <Link href="/residential-post">
               <span className="p-1">آگهی ها</span>
             </Link>
           </div>
@@ -53,7 +53,7 @@ function Header() {
               <button className="button1">داشبورد</button>
             </Link>
 
-            <Link href="/#" className="sm:hidden">
+            <Link href="/residential-post" className="sm:hidden">
               <button className="button2">آگهی ها</button>
             </Link>
           </div>
