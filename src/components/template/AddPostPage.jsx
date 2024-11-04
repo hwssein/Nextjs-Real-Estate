@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 import submitPost from "@/serverAction/submitPost";
-import editPost from "@/serverAction/editPost";
+import editPost from "@/serverAction/changeName";
 
 import FormButton from "@/element/FormButton";
 import AddPostDate from "@/module/AddPostDate";
