@@ -1,6 +1,7 @@
 "use server";
 
 import { Types } from "mongoose";
+import { revalidatePath } from "next/cache";
 
 import { convertToISO } from "@/utils/replaceNumber";
 import findUser from "@/serverAction/findUser";
@@ -62,6 +63,7 @@ const submitPost = async (formData) => {
       return { error: "مشکلی در سرور رخ داده" };
     }
 
+    revalidatePath("/residential-post");
     return { message: "با موفقیت ذخیره شد" };
   } catch (error) {
     return { error: error.message };

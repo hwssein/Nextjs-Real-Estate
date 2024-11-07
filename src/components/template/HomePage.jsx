@@ -42,7 +42,7 @@ function HomePage() {
           </p>
         </div>
 
-        <div className="w-full mt-1">
+        <div className="w-full mt-1 relative overflow-hidden rounded">
           <Image
             className="w-full rounded"
             src="/image/homepage-banner1.jpg"
@@ -50,6 +50,10 @@ function HomePage() {
             height={1000}
             alt="banner"
           ></Image>
+
+          <p className="w-full h-12 flex items-center justify-center absolute bottom-0 left-0 backdrop-blur p-2 text-bgMain sm:h-20">
+            توسط متخصصین و کارشناسان کار بلد
+          </p>
         </div>
       </div>
     </>

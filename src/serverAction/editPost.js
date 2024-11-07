@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 import Posts from "@/models/Posts";
 import findUser from "@/serverAction/findUser";
 import { convertToISO } from "@/utils/replaceNumber";
@@ -63,6 +65,7 @@ const editPost = async (formData, id) => {
       return { error: "مشکلی در سرور رخ داده" };
     }
 
+    revalidatePath("/residential-post");
     return { message: "با موفقیت تغییر کرد" };
   } catch (error) {
     return { error: error.message };

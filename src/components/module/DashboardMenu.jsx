@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 function DashboardMenu({ user, clientUser }) {
   return (
     <>
-      <div className="w-full p-2 flex flex-col items-center justify-start">
+      <div className="w-full p-1 flex flex-col items-center justify-start">
         <span>
           <CgProfile fontSize="3rem" color="var(--primary)" />
         </span>

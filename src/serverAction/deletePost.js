@@ -16,6 +16,7 @@ const deletePost = async (id) => {
     await Posts.deleteOne({ _id: id });
 
     revalidatePath("/dashboard/my-post");
+    revalidatePath("/residential-post");
 
     return { message: "با موفقیت حذف شد" };
   } catch (error) {

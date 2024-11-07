@@ -4,7 +4,7 @@ import Link from "next/link";
 function HomePageCard({ name, title }) {
   return (
     <>
-      <Link href="#">
+      <Link href={`/residential-post?category=${name}`}>
         <div className="w-full p-1 rounded shadow">
           <div className="w-full rounded overflow-hidden sm:w-64 md:w-72 lg:w-60">
             <Image
