@@ -20,7 +20,13 @@ function Header({ session }) {
   return (
     <>
       <header className="w-full flex flex-row items-center justify-between mb-12 py-2 ">
-        {showMenu && <ResMenu setShowMenu={setShowMenu} session={session} />}
+        {showMenu && (
+          <ResMenu
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+            session={session}
+          />
+        )}
 
         <div className="flex items-center justify-start gap-2">
           <div className="p-1 sm:hidden" onClick={() => setShowMenu(true)}>

@@ -60,7 +60,7 @@ function SignInPage() {
       </div>
 
       <p className="p-1">
-        حساب کاربری ندارد؟ از این{" "}
+        حساب کاربری ندارید؟ از این{" "}
         <Link href="/signUp" replace={true} className="text-primary">
           لینک
         </Link>{" "}

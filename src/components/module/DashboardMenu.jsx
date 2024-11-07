@@ -1,8 +1,10 @@
+"use client";
+
 import SignOutButton from "@/element/SignOutButton";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 
-function DashboardMenu({ session }) {
+function DashboardMenu({ session, showMenu, setShowMenu }) {
   return (
     <>
       <div className="w-full p-1 flex flex-col items-center justify-start">
@@ -19,21 +21,36 @@ function DashboardMenu({ session }) {
         <span className="bg-line w-full h-px mt-4"></span>
 
         <ul className="w-full flex flex-col gap-5 items-start justify-start mt-4 px-2">
-          <Link href="/dashboard">
+          <Link
+            href="/dashboard"
+            onClick={() => {
+              if (showMenu) setShowMenu(false);
+            }}
+          >
             <li className="flex flex-row items-center justify-start gap-2 group">
               <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
               <span>حساب کاربری</span>
             </li>
           </Link>
 
-          <Link href="/dashboard/my-post">
+          <Link
+            href="/dashboard/my-post"
+            onClick={() => {
+              if (showMenu) setShowMenu(false);
+            }}
+          >
             <li className="flex flex-row items-center justify-start gap-2 group">
               <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
               <span>آگهی های من</span>
             </li>
           </Link>
 
-          <Link href="/dashboard/add-post">
+          <Link
+            href="/dashboard/add-post"
+            onClick={() => {
+              if (showMenu) setShowMenu(false);
+            }}
+          >
             <li className="flex flex-row items-center justify-start gap-2 group">
               <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
               <span>ثبت آگهی</span>

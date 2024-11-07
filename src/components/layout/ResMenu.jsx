@@ -1,10 +1,12 @@
+"use client";
+
 import Link from "next/link";
 
 import DashboardMenu from "@/module/DashboardMenu";
 
 import { IoCloseSharp } from "react-icons/io5";
 
-function ResMenu({ setShowMenu, session }) {
+function ResMenu({ showMenu, setShowMenu, session }) {
   return (
     <>
       <div className="w-full h-full fixed top-0 right-0 bg-bgMain">
@@ -17,23 +19,27 @@ function ResMenu({ setShowMenu, session }) {
 
         <ul className="my-1 px-4 flex flex-col items-start justify-start gap-4 ">
           {session ? (
-            <DashboardMenu session={session} />
+            <DashboardMenu
+              session={session}
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
+            />
           ) : (
             <>
               {" "}
-              <Link href="/signIn">
+              <Link href="/signIn" onClick={() => setShowMenu(false)}>
                 <li className="flex flex-row items-center justify-start gap-2 group">
                   <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
                   <span>ورود</span>
                 </li>
               </Link>
-              <Link href="/signUp">
+              <Link href="/signUp" onClick={() => setShowMenu(false)}>
                 <li className="flex flex-row items-center justify-start gap-2 group">
                   <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
                   <span>ثبت نام</span>
                 </li>
               </Link>
-              <Link href="/residential-post">
+              <Link href="/residential-post" onClick={() => setShowMenu(false)}>
                 <li className="flex flex-row items-center justify-start gap-2 group">
                   <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
                   <span>آگهی ها</span>
