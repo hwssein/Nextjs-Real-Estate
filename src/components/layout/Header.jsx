@@ -2,15 +2,13 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 import ResMenu from "@/layout/ResMenu";
 
 import { FaBars } from "react-icons/fa6";
 
-function Header() {
-  const { data: session, status } = useSession();
+function Header({ session }) {
   const pathName = usePathname();
 
   const [showMenu, setShowMenu] = useState(false);
@@ -22,13 +20,7 @@ function Header() {
   return (
     <>
       <header className="w-full flex flex-row items-center justify-between mb-12 py-2 ">
-        {showMenu && (
-          <ResMenu
-            setShowMenu={setShowMenu}
-            session={session}
-            status={status}
-          />
-        )}
+        {showMenu && <ResMenu setShowMenu={setShowMenu} session={session} />}
 
         <div className="flex items-center justify-start gap-2">
           <div className="p-1 sm:hidden" onClick={() => setShowMenu(true)}>
@@ -47,7 +39,7 @@ function Header() {
           </div>
         </div>
 
-        {status === "authenticated" ? (
+        {session ? (
           <div className="flex items-center justify-start gap-1 sm:gap-3 ">
             <Link href="/dashboard">
               <button className="button1">داشبورد</button>

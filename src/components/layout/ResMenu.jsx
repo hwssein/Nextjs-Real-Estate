@@ -4,7 +4,7 @@ import DashboardMenu from "@/module/DashboardMenu";
 
 import { IoCloseSharp } from "react-icons/io5";
 
-function ResMenu({ setShowMenu, status, session }) {
+function ResMenu({ setShowMenu, session }) {
   return (
     <>
       <div className="w-full h-full fixed top-0 right-0 bg-bgMain">
@@ -16,8 +16,8 @@ function ResMenu({ setShowMenu, status, session }) {
         </span>
 
         <ul className="my-1 px-4 flex flex-col items-start justify-start gap-4 ">
-          {status === "authenticated" ? (
-            <DashboardMenu clientUser={session} />
+          {session ? (
+            <DashboardMenu session={session} />
           ) : (
             <>
               {" "}

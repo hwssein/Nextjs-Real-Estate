@@ -2,7 +2,7 @@ import SignOutButton from "@/element/SignOutButton";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 
-function DashboardMenu({ user, clientUser }) {
+function DashboardMenu({ session }) {
   return (
     <>
       <div className="w-full p-1 flex flex-col items-center justify-start">
@@ -10,17 +10,11 @@ function DashboardMenu({ user, clientUser }) {
           <CgProfile fontSize="3rem" color="var(--primary)" />
         </span>
 
-        {clientUser && (
+        {session ? (
           <p className="w-full text-center mt-4 text-darkPrimary break-words font-mono font-bold">
-            {clientUser?.user.email}
+            {session.email}
           </p>
-        )}
-
-        {user && (
-          <p className="w-full text-center mt-4 text-darkPrimary break-words font-mono font-bold">
-            {user?.email}
-          </p>
-        )}
+        ) : null}
 
         <span className="bg-line w-full h-px mt-4"></span>
 

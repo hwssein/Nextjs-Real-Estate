@@ -1,10 +1,12 @@
+import { auth } from "@/config/auth";
 import Footer from "./Footer";
 import Header from "./Header";
 
-function Layout({ children }) {
+async function Layout({ children }) {
+  const session = await auth();
   return (
     <>
-      <Header />
+      <Header session={session?.user} />
       <main>{children}</main>
       <Footer />
     </>
