@@ -50,5 +50,5 @@ a {
 }
 
 .form_input {
-  @apply w-2/3 p-2 bg-bgMain rounded border border-line focus:border-primary text-base transition ease-in duration-100;
+  @apply w-2/3 p-2 bg-bgMain rounded border border-line focus:border-primary text-base transition-all ease-in duration-100;
 }

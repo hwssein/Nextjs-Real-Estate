@@ -16,36 +16,29 @@ function AuthForm({ handleSubmit, changeHandler, form }) {
         className="w-full flex flex-col items-center justify-start gap-4 pb-6"
       >
         <div className="w-full flex flex-row items-center justify-center gap-1">
-          <label className="p-2 text-primary mr-2" htmlFor="email-text">
-            ایمیل:
-          </label>
           <input
-            className="form_input mr-2 ltr text-left"
+            className="form_input text-left placeholder:text-right font-mono"
             type="text"
             id="email-text"
             value={form.email}
             name="email"
             onChange={changeHandler}
-            placeholder="example@domin.com"
+            placeholder="ایمیل"
           />
         </div>
 
         <div className="w-full flex flex-row items-center justify-center gap-1">
-          <label className="p-2 text-primary" htmlFor="email-password">
-            رمز عبور:
-          </label>
-
-          <div className="group w-2/3 flex items-center justify-center gap-2 p-2 rounded border border-line focus-within:border-primary transition ease-in duration-100">
+          <div className="form_input flex items-center justify-between gap-1 focus-within:border-primary">
             {showPassword ? (
               <span
-                className="cursor-pointer"
+                className="cursor-pointer p-1"
                 onClick={() => setShowPassword(false)}
               >
                 <FaEye />
               </span>
             ) : (
               <span
-                className="cursor-pointer"
+                className="cursor-pointer p-1"
                 onClick={() => setShowPassword(true)}
               >
                 <FaEyeSlash />
@@ -53,12 +46,13 @@ function AuthForm({ handleSubmit, changeHandler, form }) {
             )}
 
             <input
-              className="w-full bg-bgMain ltr text-left text-base "
+              className="w-full bg-bgMain text-left placeholder:text-right font-mono"
               type={showPassword ? "text" : "password"}
               id="email-password"
               value={form.password}
               name="password"
               onChange={changeHandler}
+              placeholder="رمز عبور"
             />
           </div>
         </div>
