@@ -22,6 +22,19 @@ function ResidentialSidebar() {
     }
   }, [resetValue]);
 
+  useEffect(() => {
+    const categoryQuery = searchParams.get("category");
+    const searchQuery = searchParams.get("search");
+
+    if (categoryQuery) {
+      setSelectedItem(categoryQuery);
+    } else {
+      setSelectedItem("all");
+    }
+
+    if (searchQuery) setSearchValue(searchQuery);
+  }, []);
+
   const categories = [
     { vila: "ویلا" },
     { apartment: "آپارتمان" },
@@ -42,8 +55,8 @@ function ResidentialSidebar() {
     router.push(`/residential-post?${currentParams.toString()}`);
   };
 
-  const categoryHandler = (category, index) => {
-    setSelectedItem(index);
+  const categoryHandler = (category) => {
+    setSelectedItem(category);
 
     const currentParams = new URLSearchParams(searchParams);
 
@@ -98,13 +111,13 @@ function ResidentialSidebar() {
             همه
           </span>
 
-          {categories.map((item, index) => (
+          {categories.map((item) => (
             <span
               className={`button1 w-16 text-center ${
-                selectedItem === index ? "!bg-secondary" : null
+                selectedItem === Object.keys(item)[0] ? "!bg-secondary" : null
               } cursor-pointer sm:w-4/5`}
               key={Object.keys(item)[0]}
-              onClick={() => categoryHandler(Object.keys(item)[0], index)}
+              onClick={() => categoryHandler(Object.keys(item)[0])}
             >
               {Object.values(item)[0]}
             </span>
