@@ -1,9 +1,11 @@
+import Link from "next/link";
+import { sp } from "@/utils/replaceNumber";
+
 import { IoHomeSharp } from "react-icons/io5";
 import { PiBuildingApartmentFill } from "react-icons/pi";
 import { FaStore } from "react-icons/fa6";
 import { HiMiniBuildingOffice } from "react-icons/hi2";
 import { PiIslandFill } from "react-icons/pi";
-import { sp } from "@/utils/replaceNumber";
 
 function Card({ data }) {
   const icon = {
@@ -31,7 +33,9 @@ function Card({ data }) {
         <span>{sp(data.price)} تومان</span>
 
         <div className="w-full flex items-center justify-end">
-          <button className="text-primary p-1">مشاهده آگهی</button>
+          <Link href={`/residential-details/${data._id}`}>
+            <button className="text-primary p-1">مشاهده آگهی</button>
+          </Link>
         </div>
       </div>
     </>
