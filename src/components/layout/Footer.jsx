@@ -1,9 +1,5 @@
-import { IoHomeSharp } from "react-icons/io5";
-import { PiBuildingApartmentFill } from "react-icons/pi";
-import { FaStore } from "react-icons/fa6";
-import { HiMiniBuildingOffice } from "react-icons/hi2";
-import { PiIslandFill } from "react-icons/pi";
 import Link from "next/link";
+import icon from "@/constants/icons";
 
 function Footer() {
   return (
@@ -14,21 +10,11 @@ function Footer() {
         </p>
 
         <ul className="w-full my-5 flex items-center justify-evenly flex-row gap-2">
-          <li className="p-2 bg-secondary rounded">
-            <IoHomeSharp color="var(--bg-main)" fontSize="1.3rem" />
-          </li>
-          <li className="p-2 bg-secondary rounded">
-            <PiBuildingApartmentFill color="var(--bg-main)" fontSize="1.3rem" />
-          </li>
-          <li className="p-2 bg-secondary rounded">
-            <FaStore color="var(--bg-main)" fontSize="1.3rem" />
-          </li>
-          <li className="p-2 bg-secondary rounded">
-            <HiMiniBuildingOffice color="var(--bg-main)" fontSize="1.3rem" />
-          </li>
-          <li className="p-2 bg-secondary rounded">
-            <PiIslandFill color="var(--bg-main)" fontSize="1.3rem" />
-          </li>
+          {Object.keys(icon).map((item) => (
+            <li key={item} className="p-2 bg-secondary rounded text-bgMain">
+              {icon[item]}
+            </li>
+          ))}
         </ul>
 
         <p className="w-full text-center mt-2 ">

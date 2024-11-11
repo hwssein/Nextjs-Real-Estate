@@ -1,5 +1,6 @@
 "use client";
 
+import { category } from "@/constants/strings";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -34,14 +35,6 @@ function ResidentialSidebar() {
 
     if (searchQuery) setSearchValue(searchQuery);
   }, []);
-
-  const categories = [
-    { vila: "ویلا" },
-    { apartment: "آپارتمان" },
-    { store: "مغازه" },
-    { commercial: "تجاری" },
-    { land: "زمین" },
-  ];
 
   const searchHandler = () => {
     const currentParams = new URLSearchParams(searchParams);
@@ -111,15 +104,15 @@ function ResidentialSidebar() {
             همه
           </span>
 
-          {categories.map((item) => (
+          {Object.keys(category).map((item) => (
             <span
               className={`button1 w-16 text-center ${
-                selectedItem === Object.keys(item)[0] ? "!bg-secondary" : null
+                selectedItem === item ? "!bg-secondary" : null
               } cursor-pointer sm:w-4/5`}
-              key={Object.keys(item)[0]}
-              onClick={() => categoryHandler(Object.keys(item)[0])}
+              key={item}
+              onClick={() => categoryHandler(item)}
             >
-              {Object.values(item)[0]}
+              {category[item]}
             </span>
           ))}
         </div>

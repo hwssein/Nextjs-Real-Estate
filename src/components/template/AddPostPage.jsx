@@ -11,6 +11,7 @@ import AddPostDate from "@/module/AddPostDate";
 import AddPostForm from "@/module/AddPostForm";
 import AddPostList from "@/module/AddPostList";
 import AddPostRadio from "@/module/AddPostRadio";
+import { category } from "@/constants/strings";
 
 import { toast } from "react-toastify";
 
@@ -109,31 +110,9 @@ function AddPostPage({ data }) {
 
         <div className="w-full block mb-2">دسته بندی</div>
         <div className="w-full flex flex-row flex-wrap items-center justify-center sm:justify-between gap-4 mb-6">
-          <AddPostRadio
-            value="vila"
-            title="ویلا"
-            checked={data?.category === "vila"}
-          />
-          <AddPostRadio
-            value="apartment"
-            title="آپارتمان"
-            checked={data?.category === "apartment"}
-          />
-          <AddPostRadio
-            value="store"
-            title="مغازه"
-            checked={data?.category === "store"}
-          />
-          <AddPostRadio
-            value="commercial"
-            title="تجاری"
-            checked={data?.category === "commercial"}
-          />
-          <AddPostRadio
-            value="land"
-            title="زمین"
-            checked={data?.category === "land"}
-          />
+          {Object.keys(category).map((item) => (
+            <AddPostRadio key={item} value={item} title={category[item]} />
+          ))}
         </div>
 
         <div className="w-full block mb-2">امکانات رفاهی</div>

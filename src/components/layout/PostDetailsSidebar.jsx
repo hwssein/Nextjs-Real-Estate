@@ -1,31 +1,12 @@
 import { sp } from "@/utils/replaceNumber";
+import ShareButton from "@/element/ShareButton";
+import icon from "@/constants/icons";
+import { category } from "@/constants/strings";
 
 import { MdRealEstateAgent } from "react-icons/md";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import ShareButton from "@/element/ShareButton";
-import { IoHomeSharp } from "react-icons/io5";
-import { PiBuildingApartmentFill } from "react-icons/pi";
-import { FaStore } from "react-icons/fa6";
-import { HiMiniBuildingOffice } from "react-icons/hi2";
-import { PiIslandFill } from "react-icons/pi";
 
 function PostDetailsSidebar({ data }) {
-  const icon = {
-    vila: <IoHomeSharp fontSize="1.2rem" />,
-    apartment: <PiBuildingApartmentFill fontSize="1.2rem" />,
-    store: <FaStore fontSize="1.2rem" />,
-    commercial: <HiMiniBuildingOffice fontSize="1.2rem" />,
-    land: <PiIslandFill fontSize="1.2rem" />,
-  };
-
-  const category = {
-    vila: "ویلایی",
-    apartment: "آپارتمان",
-    store: "مغازه",
-    commercial: "تجاری",
-    land: "زمین",
-  };
-
   return (
     <>
       <div className="w-full flex flex-col items-start justify-start">

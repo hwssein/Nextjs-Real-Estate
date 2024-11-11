@@ -1,28 +1,10 @@
+import icon from "@/constants/icons";
+import { category } from "@/constants/strings";
 import { sp } from "@/utils/replaceNumber";
 
 import { FaLocationDot } from "react-icons/fa6";
-import { IoHomeSharp } from "react-icons/io5";
-import { PiBuildingApartmentFill } from "react-icons/pi";
-import { FaStore } from "react-icons/fa6";
-import { HiMiniBuildingOffice } from "react-icons/hi2";
-import { PiIslandFill } from "react-icons/pi";
 
 function PostDetailsPage({ data }) {
-  const icon = {
-    vila: <IoHomeSharp fontSize="1.2rem" />,
-    apartment: <PiBuildingApartmentFill fontSize="1.2rem" />,
-    store: <FaStore fontSize="1.2rem" />,
-    commercial: <HiMiniBuildingOffice fontSize="1.2rem" />,
-    land: <PiIslandFill fontSize="1.2rem" />,
-  };
-
-  const category = {
-    vila: "ویلایی",
-    apartment: "آپارتمان",
-    store: "مغازه",
-    commercial: "تجاری",
-    land: "زمین",
-  };
   return (
     <>
       <div className="w-full flex flex-col items-start justify-start p-1">
