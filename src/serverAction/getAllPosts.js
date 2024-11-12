@@ -7,7 +7,7 @@ const getAllPosts = async () => {
   try {
     await connectDB();
 
-    const posts = await Posts.find().select("-userId");
+    const posts = await Posts.find({ published: true }).select("-userId");
     if (!posts || posts.length === 0)
       throw new Error("هنوز هیج آگهی منتشر نشده است");
 

@@ -4,7 +4,7 @@ import SignOutButton from "@/element/SignOutButton";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
 
-function DashboardMenu({ session, showMenu, setShowMenu }) {
+function DashboardMenu({ session, role, showMenu, setShowMenu }) {
   return (
     <>
       <div className="w-full p-1 flex flex-col items-center justify-start">
@@ -12,11 +12,11 @@ function DashboardMenu({ session, showMenu, setShowMenu }) {
           <CgProfile fontSize="3rem" color="var(--primary)" />
         </span>
 
-        {session ? (
+        {session && (
           <p className="w-full text-center mt-4 text-darkPrimary break-words font-mono font-bold">
-            {session.email}
+            {session}
           </p>
-        ) : null}
+        )}
 
         <span className="bg-line w-full h-px mt-4"></span>
 
@@ -56,6 +56,20 @@ function DashboardMenu({ session, showMenu, setShowMenu }) {
               <span>ثبت آگهی</span>
             </li>
           </Link>
+
+          {role === "ADMIN" && (
+            <Link
+              href="/admin"
+              onClick={() => {
+                if (showMenu) setShowMenu(false);
+              }}
+            >
+              <li className="flex flex-row items-center justify-start gap-2 group">
+                <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>
+                <span>در انتظار تایید</span>
+              </li>
+            </Link>
+          )}
 
           <li className="flex flex-row items-center justify-start gap-2 group">
             <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>

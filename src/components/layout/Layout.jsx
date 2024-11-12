@@ -1,12 +1,14 @@
-import { auth } from "@/config/auth";
 import Footer from "./Footer";
 import Header from "./Header";
+import findUser from "@/serverAction/findUser";
 
 async function Layout({ children }) {
-  const session = await auth();
+  const user = await findUser();
+  const jsUser = JSON.parse(JSON.stringify(user));
+
   return (
     <>
-      <Header session={session?.user} />
+      <Header session={jsUser?.email} role={jsUser?.role} />
       <main>{children}</main>
       <Footer />
     </>

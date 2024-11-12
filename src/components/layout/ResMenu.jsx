@@ -6,7 +6,7 @@ import DashboardMenu from "@/module/DashboardMenu";
 
 import { IoCloseSharp } from "react-icons/io5";
 
-function ResMenu({ showMenu, setShowMenu, session }) {
+function ResMenu({ showMenu, setShowMenu, session, role }) {
   return (
     <>
       <div className="w-full h-full fixed top-0 right-0 bg-bgMain">
@@ -21,12 +21,12 @@ function ResMenu({ showMenu, setShowMenu, session }) {
           {session ? (
             <DashboardMenu
               session={session}
+              role={role}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
             />
           ) : (
             <>
-              {" "}
               <Link href="/signIn" onClick={() => setShowMenu(false)}>
                 <li className="flex flex-row items-center justify-start gap-2 group">
                   <span className="w-1 h-4 rounded bg-primary group-hover:bg-secondary transition ease-in duration-100"></span>

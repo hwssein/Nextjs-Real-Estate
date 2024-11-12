@@ -47,6 +47,11 @@ const postSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "users",
     },
+
+    published: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

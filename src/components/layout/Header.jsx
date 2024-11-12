@@ -8,7 +8,7 @@ import ResMenu from "@/layout/ResMenu";
 
 import { FaBars } from "react-icons/fa6";
 
-function Header({ session }) {
+function Header({ session, role }) {
   const pathName = usePathname();
 
   const [showMenu, setShowMenu] = useState(false);
@@ -25,6 +25,7 @@ function Header({ session }) {
             showMenu={showMenu}
             setShowMenu={setShowMenu}
             session={session}
+            role={role}
           />
         )}
 

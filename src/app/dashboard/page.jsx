@@ -8,7 +8,7 @@ async function Dashboard() {
 
   const jsUser = JSON.parse(JSON.stringify(user));
 
-  return <DashboardPage createdAt={jsUser.createdAt} />;
+  return <DashboardPage createdAt={jsUser.createdAt} role={jsUser.role} />;
 }
 
 export default Dashboard;
