@@ -14,7 +14,7 @@ async function ResidentialPost({ searchParams }) {
 
   return (
     <>
-      <ResidentialPostPage data={jsPosts.data} searchParam={searchParams} />
+      <ResidentialPostPage data={jsPosts.data} searchParams={searchParams} />
     </>
   );
 }
