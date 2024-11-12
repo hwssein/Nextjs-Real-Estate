@@ -1,9 +1,9 @@
 import Card from "@/module/Card";
 import { categoryFilter, searchFilter } from "@/utils/filter";
 
-async function ResidentialPostPage({ data, searchParams }) {
-  let displayData = categoryFilter(data, searchParams.category);
-  displayData = searchFilter(displayData, searchParams.search);
+async function ResidentialPostPage({ data, searchParam }) {
+  let displayData = categoryFilter(data, searchParam?.category);
+  displayData = searchFilter(displayData, searchParam?.search);
 
   if (displayData.length === 0)
     return (
