@@ -13,7 +13,7 @@ function ResidentialLayout({ children }) {
 
         <span className="w-full h-px bg-line sm:hidden"></span>
 
-        <div className="w-full">{children}</div>
+        <section className="w-full">{children}</section>
       </div>
     </>
   );

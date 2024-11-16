@@ -6,9 +6,11 @@ function Card({ data }) {
   return (
     <>
       <div className="w-full flex flex-col items-start justify-start gap-1 border border-line rounded p-2">
-        <div className="w-full flex items-center justify-start gap-2">
+        <div className="w-full flex items-start justify-start gap-2">
           <span className="text-primary">{icon[data.category]}</span>
-          <span className="text-lg break-words w-full">{data.postTitle}</span>
+          <span className="text-lg h-16 break-words w-full">
+            {data.postTitle}
+          </span>
         </div>
 
         <span>{data.address}</span>
