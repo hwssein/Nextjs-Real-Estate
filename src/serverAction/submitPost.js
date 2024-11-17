@@ -3,30 +3,24 @@
 import { Types } from "mongoose";
 import { revalidatePath } from "next/cache";
 
-import { convertToISO } from "@/utils/replaceNumber";
 import findUser from "@/serverAction/findUser";
 import Posts from "@/models/Posts";
 
-const submitPost = async (formData) => {
+const submitPost = async (form) => {
   try {
     const user = await findUser();
     if (user.error) throw new Error(user.error);
 
-    const date = formData.get("constructionDate");
-    const newDate = convertToISO(date);
-    formData.delete("constructionDate");
-    formData.append("constructionDate", newDate);
-
-    const postTitle = formData.get("postTitle");
-    const description = formData.get("description");
-    const address = formData.get("address");
-    const telNumber = formData.get("telNumber");
-    const price = formData.get("price");
-    const realEstate = formData.get("realEstate");
-    const category = formData.get("category");
-    const amenities = formData.getAll("amenities");
-    const rules = formData.getAll("rules");
-    const constructionDate = formData.get("constructionDate");
+    const postTitle = form.postTitle;
+    const description = form.description;
+    const address = form.address;
+    const telNumber = form.telNumber;
+    const price = form.price;
+    const realEstate = form.realEstate;
+    const category = form.category;
+    const amenities = form.amenities;
+    const rules = form.rules;
+    const constructionDate = form.constructionDate;
 
     const regex = /^9\d{9}$/;
     const telNumberResult = regex.test(telNumber);
@@ -63,7 +57,7 @@ const submitPost = async (formData) => {
       return { error: "مشکلی در سرور رخ داده" };
     }
 
-    revalidatePath("/residential-post");
+    revalidatePath("/dashboard/my-post");
     return { message: "با موفقیت ذخیره شد" };
   } catch (error) {
     return { error: error.message };

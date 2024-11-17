@@ -1,50 +1,66 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import submitPost from "@/serverAction/submitPost";
 import editPost from "@/serverAction/editPost";
 
-import FormButton from "@/element/FormButton";
-import AddPostDate from "@/module/AddPostDate";
-import AddPostForm from "@/module/AddPostForm";
-import AddPostList from "@/module/AddPostList";
-import AddPostRadio from "@/module/AddPostRadio";
-import { category } from "@/constants/strings";
+import PostForm from "@/module/PostForm";
 
 import { toast } from "react-toastify";
 
 function AddPostPage({ data }) {
   const router = useRouter();
 
-  const formRef = useRef(null);
+  const [form, setForm] = useState({
+    postTitle: "",
+    description: "",
+    address: "",
+    telNumber: "",
+    price: "",
+    realEstate: "",
+    category: "",
+    amenities: [],
+    rules: [],
+    constructionDate: new Date(),
+  });
 
   useEffect(() => {
-    if (data && formRef.current) {
-      const formData = new FormData(formRef.current);
+    if (data) setForm(data);
+  }, []);
 
-      for (const key in data) {
-        if (formData.has(key)) {
-          formRef.current[key].value = data[key];
-        }
-      }
-    }
-  }, [data]);
+  const changeHandler = (event) => {
+    const { name, value } = event.target;
 
-  const submitHandler = async (formData) => {
-    const res = await submitPost(formData);
+    setForm({ ...form, [name]: value });
+  };
+
+  const submitHandler = async () => {
+    const res = await submitPost(form);
 
     if (res?.message) {
       toast.success(res.message);
-      formRef.current.reset();
+      setForm({
+        postTitle: "",
+        description: "",
+        address: "",
+        telNumber: "",
+        price: "",
+        realEstate: "",
+        category: "",
+        amenities: [],
+        rules: [],
+        constructionDate: new Date(),
+      });
+      router.refresh();
     }
 
     if (res?.error) toast.error(res.error);
   };
 
-  const editHandler = async (formData) => {
-    const res = await editPost(formData, data._id);
+  const editHandler = async () => {
+    const res = await editPost(form, data._id);
 
     if (res?.message) {
       toast.success(res.message);
@@ -60,78 +76,14 @@ function AddPostPage({ data }) {
         {data ? "ویرایش آگهی" : "ثبت آگهی"}
       </div>
 
-      <form
-        ref={formRef}
-        action={data ? editHandler : submitHandler}
-        className="w-full"
-      >
-        <AddPostForm
-          type="text"
-          textArea={false}
-          name="postTitle"
-          title="عنوان آگهی"
-          defaultValue={data?.postTitle || ""}
-        />
-        <AddPostForm
-          type="text"
-          textArea={true}
-          name="description"
-          title="توضیحات"
-          defaultValue={data?.description || ""}
-        />
-        <AddPostForm
-          type="text"
-          textArea={false}
-          name="address"
-          title="آدرس"
-          defaultValue={data?.address || ""}
-        />
-        <AddPostForm
-          type="number"
-          textArea={false}
-          name="telNumber"
-          title="شماره تماس"
-          defaultValue={data?.telNumber || ""}
-        />
-        <AddPostForm
-          type="number"
-          textArea={false}
-          name="price"
-          title="قیمت (تومان)"
-          defaultValue={data?.price || ""}
-        />
-        <AddPostForm
-          type="text"
-          textArea={false}
-          name="realEstate"
-          title="نام بنگاه"
-          defaultValue={data?.realEstate || ""}
-        />
-
-        <div className="w-full block mb-2">دسته بندی</div>
-        <div className="w-full flex flex-row flex-wrap items-center justify-center sm:justify-between gap-4 mb-6">
-          {Object.keys(category).map((item) => (
-            <AddPostRadio key={item} value={item} title={category[item]} />
-          ))}
-        </div>
-
-        <div className="w-full block mb-2">امکانات رفاهی</div>
-        <AddPostList name="amenities" initialList={data?.amenities || []} />
-
-        <div className="w-full block mb-2">قوانین</div>
-        <AddPostList name="rules" initialList={data?.rules || []} />
-
-        <div className="w-full block mb-2">تاریخ ساخت</div>
-        <AddPostDate value={data?.constructionDate} />
-
-        <div className="mt-6">
-          {data ? (
-            <FormButton text="ویرایش" width="w-full" />
-          ) : (
-            <FormButton text="ثبت" width="w-full" />
-          )}
-        </div>
-      </form>
+      <PostForm
+        form={form}
+        setForm={setForm}
+        changeHandler={changeHandler}
+        submitHandler={submitHandler}
+        editHandler={editHandler}
+        data={data}
+      />
     </>
   );
 }

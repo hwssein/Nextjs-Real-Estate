@@ -8,7 +8,11 @@ function DashboardPage({ createdAt, role }) {
 
         <div className="w-44 p-2 flex flex-row items-center gap-2 mt-4 bg-line rounded">
           <span>تاریخ عضویت:</span>
-          <span>{new Date(createdAt).toLocaleDateString("fa-ir")}</span>
+          <span>
+            {!!createdAt
+              ? new Date(createdAt).toLocaleDateString("fa-ir")
+              : new Date().toLocaleDateString("fa-ir")}
+          </span>
         </div>
 
         {role === "ADMIN" && (

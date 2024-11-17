@@ -15,8 +15,8 @@ async function DashboardLayout({ children }) {
 
   return (
     <>
-      <div className="w-full flex flex-row items-start justify-start gap-12 px-1 ">
-        <div className="hidden w-60 shadow rounded py-6 sm:flex">
+      <div className="w-full flex flex-row items-start justify-start gap-5 px-1 md:gap-10">
+        <div className="hidden w-72 border border-line rounded py-8 sm:flex">
           <DashboardMenu session={jsUser?.email} role={jsUser?.role} />
         </div>
 

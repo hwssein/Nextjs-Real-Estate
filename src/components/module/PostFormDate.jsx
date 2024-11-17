@@ -1,24 +1,20 @@
 "use client";
 
-import { useState } from "react";
-
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 
-function AddPostDate({ value }) {
-  const [date, setDate] = useState(new Date(value));
-
+function PostFormDate({ form, setForm }) {
   const changeHandler = (event) => {
     const updateDate = new Date(event);
 
-    setDate(updateDate);
+    setForm({ ...form, constructionDate: updateDate });
   };
 
   return (
     <>
       <DatePicker
-        value={date}
+        value={form.constructionDate}
         name="constructionDate"
         onChange={changeHandler}
         calendar={persian}
@@ -29,4 +25,4 @@ function AddPostDate({ value }) {
   );
 }
 
-export default AddPostDate;
+export default PostFormDate;

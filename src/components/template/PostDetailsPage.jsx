@@ -50,9 +50,7 @@ function PostDetailsPage({ data }) {
           {data?.amenities.map((item, index) => (
             <li
               key={index}
-              className={`w-full p-1 pr-2 rounded ${
-                index % 2 ? "bg-bgMain" : "bg-primary"
-              }`}
+              className={`w-full p-1 pr-2 rounded border border-line my-1`}
             >
               {item}
             </li>
@@ -68,9 +66,7 @@ function PostDetailsPage({ data }) {
           {data?.rules.map((item, index) => (
             <li
               key={index}
-              className={`w-full p-1 pr-2 rounded ${
-                index % 2 ? "bg-bgMain" : "bg-primary"
-              }`}
+              className={`w-full p-1 pr-2 rounded border border-line my-1`}
             >
               {item}
             </li>

@@ -19,7 +19,7 @@ async function PostDetails({ params }) {
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-start gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div className="w-full flex flex-col items-center justify-start gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-5 md:gap-10">
       <div className="w-full lg:w-3/4">
         <PostDetailsPage data={jsPost.data} />
       </div>

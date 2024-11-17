@@ -11,11 +11,11 @@
   "dependencies": {
     "@auth/mongodb-adapter": "^3.7.0",
     "bcryptjs": "^2.4.3",
-    "moment-jalaali": "^0.10.1",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
     "next": "14.2.14",
     "next-auth": "^5.0.0-beta.22",
+    "num2persian": "^3.2.2",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.3.0",

@@ -1,33 +1,29 @@
 "use client";
 
-import { useState } from "react";
-
-function AddPostList({ name, initialList }) {
-  const [list, setList] = useState(initialList || []);
+function PostFormList({ name, form, setForm }) {
+  const addNew = () => {
+    setForm({ ...form, [name]: [...form[name], ""] });
+  };
 
   const changeHandler = (event, index) => {
     const { value } = event.target;
-    const updateList = [...list];
+    const updateList = [...form[name]];
     updateList[index] = value;
 
-    setList(updateList);
-  };
-
-  const addNew = () => {
-    setList([...list, ""]);
+    setForm({ ...form, [name]: updateList });
   };
 
   const removeList = (index) => {
-    const updateList = list.filter((item, number) => number !== index);
+    const updateList = form[name].filter((item, number) => number !== index);
 
-    setList(updateList);
+    setForm({ ...form, [name]: updateList });
   };
 
   return (
     <>
       <div className="w-full mb-6 flex flex-col items-start gap-4">
         <div className="w-full flex flex-col items-start gap-2">
-          {list.map((item, index) => (
+          {form[name].map((item, index) => (
             <div key={index} className="w-full flex items-center gap-2">
               <input
                 type="text"
@@ -53,4 +49,4 @@ function AddPostList({ name, initialList }) {
   );
 }
 
-export default AddPostList;
+export default PostFormList;
