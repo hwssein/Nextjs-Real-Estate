@@ -3,6 +3,10 @@ import { redirect } from "next/navigation";
 import DashboardMenu from "@/module/DashboardMenu";
 import findUser from "@/serverAction/findUser";
 
+export const metadata = {
+  title: "پنل کاربری | پروژه Next.js",
+};
+
 async function DashboardLayout({ children }) {
   const user = await findUser();
   if (!user || user.error) redirect("/signIn");

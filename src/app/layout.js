@@ -6,8 +6,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 export const metadata = {
-  title: "Real Estate Next.js Project",
-  description: "پروژه املاک توسعه داده شده با next js",
+  title: "املاک کویر | پروژه Next.js",
+  description: "سامانه خرید و فروش املاک | پروژه توسعه داده شده با Next.js",
+  icons: { icon: "/image/icon.png" },
 };
 
 export default function RootLayout({ children }) {

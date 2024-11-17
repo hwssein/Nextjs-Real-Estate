@@ -2,6 +2,10 @@ import findUser from "@/serverAction/findUser";
 import getUnpublishedPost from "@/serverAction/getUnpublishedPost";
 import AdminPage from "@/template/AdminPage";
 
+export const metadata = {
+  title: "پنل ادمین | پروژه Next.js",
+};
+
 async function Admin() {
   const user = await findUser();
   const posts = await getUnpublishedPost();

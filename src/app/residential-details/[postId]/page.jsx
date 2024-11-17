@@ -31,4 +31,16 @@ async function PostDetails({ params }) {
   );
 }
 
+export const generateMetadata = async ({ params }) => {
+  const { postId } = params;
+
+  const post = await getPostDetails(postId);
+
+  return {
+    title: post.data.postTitle,
+    description: post.data.description,
+    authors: { name: post.data.realEstate },
+  };
+};
+
 export default PostDetails;
