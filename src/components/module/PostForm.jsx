@@ -97,7 +97,7 @@ function PostForm({
         <div className="w-full block mb-2">امکانات رفاهی</div>
         <PostFormList name="amenities" form={form} setForm={setForm} />
 
-        <div className="w-full block mb-2">امکانات رفاهی</div>
+        <div className="w-full block mb-2">قوانین</div>
         <PostFormList name="rules" form={form} setForm={setForm} />
 
         <div className="w-full block mb-2">تاریخ ساخت</div>

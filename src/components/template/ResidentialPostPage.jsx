@@ -16,7 +16,7 @@ async function ResidentialPostPage({ data, searchParams }) {
     <>
       <div className="w-full p-1 flex flex-row flex-wrap items-center justify-center gap-2">
         {displayData.map((item) => (
-          <div key={item._id} className="w-44 my-1 sm:w-52 md:w-68 lg:w-72">
+          <div key={item._id} className="w-4/5 my-1 sm:w-52 md:w-68 lg:w-72">
             <Card data={item} />
           </div>
         ))}

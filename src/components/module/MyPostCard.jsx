@@ -29,7 +29,7 @@ function MyPostCard({ data, role }) {
 
   return (
     <>
-      <div className="w-72 my-1 sm:w-52 md:w-68 lg:w-72">
+      <div className="w-4/5 my-1 sm:w-52 md:w-68 lg:w-72">
         <Card data={data} />
 
         <div className="w-full  flex justify-between border-l border-r border-b border-line rounded px-2 py-1">
