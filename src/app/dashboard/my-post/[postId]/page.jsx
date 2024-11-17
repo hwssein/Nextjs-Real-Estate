@@ -1,6 +1,8 @@
+import Loader from "@/element/Loader";
 import Posts from "@/models/Posts";
 import AddPostPage from "@/template/AddPostPage";
 import connectDB from "@/utils/connectDB";
+import { Suspense } from "react";
 
 async function EditPost({ params }) {
   await connectDB();
@@ -19,7 +21,9 @@ async function EditPost({ params }) {
 
   return (
     <>
-      <AddPostPage data={jsPost} />
+      <Suspense fallback={<Loader />}>
+        <AddPostPage data={jsPost} />
+      </Suspense>
     </>
   );
 }

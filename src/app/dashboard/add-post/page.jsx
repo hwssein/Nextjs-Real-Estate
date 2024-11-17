@@ -1,9 +1,14 @@
+import { Suspense } from "react";
+
 import AddPostPage from "@/template/AddPostPage";
+import Loader from "@/element/Loader";
 
 function AddPost() {
   return (
     <>
-      <AddPostPage />
+      <Suspense fallback={<Loader />}>
+        <AddPostPage />
+      </Suspense>
     </>
   );
 }

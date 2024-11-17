@@ -1,10 +1,12 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
 
 import DashboardMenu from "@/module/DashboardMenu";
 
 import { IoCloseSharp } from "react-icons/io5";
+import Loader from "@/element/Loader";
 
 function ResMenu({ showMenu, setShowMenu, session, role }) {
   return (
@@ -19,12 +21,14 @@ function ResMenu({ showMenu, setShowMenu, session, role }) {
 
         <ul className="my-1 px-4 flex flex-col items-start justify-start gap-4 ">
           {session ? (
-            <DashboardMenu
-              session={session}
-              role={role}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-            />
+            <Suspense fallback={<Loader />}>
+              <DashboardMenu
+                session={session}
+                role={role}
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+              />
+            </Suspense>
           ) : (
             <>
               <Link href="/signIn" onClick={() => setShowMenu(false)}>
