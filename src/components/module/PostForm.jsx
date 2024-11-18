@@ -9,6 +9,7 @@ import PostFormDate from "@/module/PostFormDate";
 
 import FormButton from "@/element/FormButton";
 import Num2persian from "num2persian";
+import PostFormImage from "./PostFormImage";
 
 function PostForm({
   form,
@@ -38,6 +39,8 @@ function PostForm({
           changeHandler={changeHandler}
           title="توضیحات"
         />
+
+        <PostFormImage name="image" form={form} setForm={setForm} />
 
         <PostFormInput
           type="text"

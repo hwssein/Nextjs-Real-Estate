@@ -16,6 +16,7 @@ function AddPostPage({ data }) {
   const [form, setForm] = useState({
     postTitle: "",
     description: "",
+    image: [],
     address: "",
     telNumber: "",
     price: "",
@@ -44,6 +45,7 @@ function AddPostPage({ data }) {
       setForm({
         postTitle: "",
         description: "",
+        image: [],
         address: "",
         telNumber: "",
         price: "",
