@@ -16,19 +16,26 @@ function PostFormImage({ name, form, setForm }) {
   const changeHandler = (event) => {
     const { files } = event.target;
 
-    Array.from(files).map((item) => {
-      if (item.size >= 1500000) {
-        toast.warning("عکس های بزرگتر از یک مگابایت و نیم پشتیبانی نمی شود");
-      } else if (images.length >= 5) {
-        toast.warning("بیشتر از پنج عدد عکس پشتیبانی نمی شود");
-      } else {
-        setImages([...images, ...Array.from(files)]);
-      }
-    });
+    if (files) {
+      const filesArray = Array.from(files);
+
+      filesArray.map((item) => {
+        if (item.size >= 1500000) {
+          toast.warning("عکس های بزرگتر از یک مگابایت و نیم پشتیبانی نمی شود");
+        } else if (images.length >= 5) {
+          toast.warning("بیشتر از پنج عدد عکس پشتیبانی نمی شود");
+        } else {
+          const newImageUrls = URL.createObjectURL(item);
+          setImages([...images, newImageUrls]);
+        }
+      });
+    }
   };
 
-  const deleteHandler = (index) => {
-    const updateImage = images.filter((item, number) => number !== index);
+  const deleteHandler = (item, index) => {
+    URL.revokeObjectURL(item);
+
+    const updateImage = images.filter((i, number) => number !== index);
 
     setImages(updateImage);
   };
@@ -58,11 +65,11 @@ function PostFormImage({ name, form, setForm }) {
           <div className="w-full flex items-center justify-start gap-1">
             {images.map((item, index) => (
               <div
-                key={index}
+                key={item}
                 className="w-14 h-10 rounded overflow-hidden relative"
               >
                 <Image
-                  src={URL.createObjectURL(item)}
+                  src={item}
                   width={150}
                   height={100}
                   alt={`uploaded-${index}`}
@@ -71,7 +78,7 @@ function PostFormImage({ name, form, setForm }) {
 
                 <button
                   className="w-full h-full absolute top-0 right-0 backdrop-blur text-bgMain opacity-0 hover:opacity-100 transition-all ease-in duration-100"
-                  onClick={() => deleteHandler(index)}
+                  onClick={() => deleteHandler(item, index)}
                 >
                   حذف
                 </button>
