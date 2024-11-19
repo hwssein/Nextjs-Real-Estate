@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 function PostFormImage({ name, form, setForm }) {
   const [images, setImages] = useState([]);
+  const refImage = useRef(null);
 
   useEffect(() => {
     setForm({
@@ -34,19 +35,19 @@ function PostFormImage({ name, form, setForm }) {
 
   return (
     <>
-      <div className="w-full flex flex-col items-start justify-start gap-1">
-        <div className="relative w-32 inline-block mb-3">
+      <div className="w-full flex flex-col items-start justify-start mb-4">
+        <div className="w-full mb-2">
           <label
-            htmlFor={`${name}-id`}
-            className="w-full py-2 inline-block text-center bg-primary text-bgMain rounded cursor-pointer transition-all ease-in duration-100 hover:bg-darkPrimary"
+            onClick={() => refImage.current?.click()}
+            className="px-4 py-2 text-bgMain bg-primary rounded transition ease-in duration-100 cursor-pointer hover:bg-darkPrimary"
           >
             افزودن تصویر
           </label>
 
           <input
+            ref={refImage}
             type="file"
-            id={`${name}-id`}
-            className="w-full h-full absolute top-0 right-0 cursor-pointer invisible"
+            className="hidden"
             name={name}
             onChange={changeHandler}
             multiple
