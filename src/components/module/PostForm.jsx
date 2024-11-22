@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { category } from "@/constants/strings";
 
 import PostFormInput from "@/module/PostFormInput";
@@ -19,6 +21,8 @@ function PostForm({
   editHandler,
   data,
 }) {
+  const [uploadImage, setUploadImage] = useState(false);
+
   return (
     <>
       <form className="w-full" action={data ? editHandler : submitHandler}>
@@ -40,7 +44,13 @@ function PostForm({
           title="توضیحات"
         />
 
-        <PostFormImage name="image" form={form} setForm={setForm} />
+        <PostFormImage
+          name="image"
+          form={form}
+          setForm={setForm}
+          uploadImage={uploadImage}
+          setUploadImage={setUploadImage}
+        />
 
         <PostFormInput
           type="text"
@@ -106,7 +116,7 @@ function PostForm({
         <div className="w-full block mb-2">تاریخ ساخت</div>
         <PostFormDate form={form} setForm={setForm} />
 
-        <div className="mt-6">
+        <div className="mt-6" onClick={() => setUploadImage(true)}>
           {data ? (
             <FormButton text="ویرایش" width="w-full" />
           ) : (

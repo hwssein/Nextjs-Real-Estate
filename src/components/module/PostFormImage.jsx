@@ -1,34 +1,58 @@
+"use client";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
-function PostFormImage({ name, form, setForm }) {
+function PostFormImage({ name, form, setForm, uploadImage, setUploadImage }) {
   const [images, setImages] = useState([]);
+  const [imagesUrl, setImagesUrl] = useState([]);
   const refImage = useRef(null);
 
   useEffect(() => {
-    setForm({
-      ...form,
-      [name]: images,
-    });
+    if (images.length !== 0) {
+      const fileArray = Array.from(images);
+
+      fileArray.map((item) => {
+        const newImageUrl = URL.createObjectURL(item);
+        setImagesUrl([...imagesUrl, newImageUrl]);
+      });
+    }
   }, [images]);
+
+  useEffect(() => {
+    const postImages = async () => {
+      const formData = new FormData();
+
+      for (let i = 0; i < images.length; i++) {
+        formData.append("image", images[i]);
+      }
+
+      const res = await fetch("/api/posts-image", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+
+      setUploadImage(false);
+    };
+
+    if (uploadImage) {
+      postImages();
+    }
+  }, [uploadImage]);
 
   const changeHandler = (event) => {
     const { files } = event.target;
 
-    if (files) {
-      const filesArray = Array.from(files);
-
-      filesArray.map((item) => {
-        if (item.size >= 1500000) {
-          toast.warning("عکس های بزرگتر از یک مگابایت و نیم پشتیبانی نمی شود");
-        } else if (images.length >= 5) {
-          toast.warning("بیشتر از پنج عدد عکس پشتیبانی نمی شود");
-        } else {
-          const newImageUrls = URL.createObjectURL(item);
-          setImages([...images, newImageUrls]);
-        }
-      });
+    if (files[0]) {
+      if (files[0].size >= 1500000) {
+        toast.warning("عکس های بزرگتر از یک مگابایت و نیم پشتیبانی نمی شود");
+      } else if (images.length >= 5) {
+        toast.warning("بیشتر از پنج عدد عکس پشتیبانی نمی شود");
+      } else {
+        setImages([...images, files[0]]);
+      }
     }
   };
 
@@ -37,7 +61,7 @@ function PostFormImage({ name, form, setForm }) {
 
     const updateImage = images.filter((i, number) => number !== index);
 
-    setImages(updateImage);
+    setImagesUrl(updateImage);
   };
 
   return (
@@ -57,13 +81,12 @@ function PostFormImage({ name, form, setForm }) {
             className="hidden"
             name={name}
             onChange={changeHandler}
-            multiple
           />
         </div>
 
-        {images.length !== 0 && (
+        {imagesUrl.length !== 0 && (
           <div className="w-full flex items-center justify-start gap-1">
-            {images.map((item, index) => (
+            {imagesUrl.map((item, index) => (
               <div
                 key={item}
                 className="w-14 h-10 rounded overflow-hidden relative"
