@@ -31,6 +31,8 @@ function PostFormInput({ textArea, type, name, title, value, changeHandler }) {
                     id={`${name}-id`}
                     className="form_input text-left"
                     required
+                    pattern="\d*"
+                    maxLength="10"
                   />
                   <span className="p-1 bg-line rounded m-1">98+</span>
                 </div>

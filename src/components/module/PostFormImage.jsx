@@ -1,46 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
-function PostFormImage({ name, form, setForm, uploadImage, setUploadImage }) {
-  const [images, setImages] = useState([]);
+function PostFormImage({ name, form, setForm }) {
   const [imagesUrl, setImagesUrl] = useState([]);
   const refImage = useRef(null);
-
-  useEffect(() => {
-    if (images.length !== 0) {
-      const fileArray = Array.from(images);
-
-      fileArray.map((item) => {
-        const newImageUrl = URL.createObjectURL(item);
-        setImagesUrl([...imagesUrl, newImageUrl]);
-      });
-    }
-  }, [images]);
-
-  useEffect(() => {
-    const postImages = async () => {
-      const formData = new FormData();
-
-      for (let i = 0; i < images.length; i++) {
-        formData.append("image", images[i]);
-      }
-
-      const res = await fetch("/api/posts-image", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-
-      setUploadImage(false);
-    };
-
-    if (uploadImage) {
-      postImages();
-    }
-  }, [uploadImage]);
 
   const changeHandler = (event) => {
     const { files } = event.target;
@@ -48,10 +14,16 @@ function PostFormImage({ name, form, setForm, uploadImage, setUploadImage }) {
     if (files[0]) {
       if (files[0].size >= 1500000) {
         toast.warning("عکس های بزرگتر از یک مگابایت و نیم پشتیبانی نمی شود");
-      } else if (images.length >= 5) {
+      } else if (form.image.length >= 5) {
         toast.warning("بیشتر از پنج عدد عکس پشتیبانی نمی شود");
       } else {
-        setImages([...images, files[0]]);
+        const newImageURl = URL.createObjectURL(files[0]);
+        setImagesUrl((prevUrl) => [...prevUrl, newImageURl]);
+
+        setForm((prvForm) => ({
+          ...prvForm,
+          [name]: [...form[name], files[0]],
+        }));
       }
     }
   };
@@ -59,9 +31,14 @@ function PostFormImage({ name, form, setForm, uploadImage, setUploadImage }) {
   const deleteHandler = (item, index) => {
     URL.revokeObjectURL(item);
 
-    const updateImage = images.filter((i, number) => number !== index);
+    const updateImage = imagesUrl.filter((i, number) => number !== index);
+    const updateFormImages = form.image.filter((i, number) => number !== index);
 
     setImagesUrl(updateImage);
+    setForm((prvForm) => ({
+      ...prvForm,
+      [name]: updateFormImages,
+    }));
   };
 
   return (

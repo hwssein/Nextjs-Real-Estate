@@ -38,7 +38,27 @@ function AddPostPage({ data }) {
   };
 
   const submitHandler = async () => {
-    const res = await submitPost(form);
+    const formData = new FormData();
+
+    for (let i in form) {
+      if (i === "image") {
+        for (let img = 0; img < form.image.length; img++) {
+          formData.append("image", form.image[img]);
+        }
+      } else if (i === "amenities") {
+        for (let amn = 0; amn < form.amenities.length; amn++) {
+          formData.append("amenities", form.amenities[amn]);
+        }
+      } else if (i === "rules") {
+        for (let rul = 0; rul < form.rules.length; rul++) {
+          formData.append("rules", form.rules[rul]);
+        }
+      } else {
+        formData.append(i, form[i]);
+      }
+    }
+
+    const res = await submitPost(formData);
 
     if (res?.message) {
       toast.success(res.message);
@@ -62,7 +82,27 @@ function AddPostPage({ data }) {
   };
 
   const editHandler = async () => {
-    const res = await editPost(form, data._id);
+    const formData = new FormData();
+
+    for (let i in form) {
+      if (i === "image") {
+        for (let img = 0; img < form.image.length; img++) {
+          formData.append("image", form.image[img]);
+        }
+      } else if (i === "amenities") {
+        for (let amn = 0; amn < form.amenities.length; amn++) {
+          formData.append("amenities", form.amenities[amn]);
+        }
+      } else if (i === "rules") {
+        for (let rul = 0; rul < form.rules.length; rul++) {
+          formData.append("rules", form.rules[rul]);
+        }
+      } else {
+        formData.append(i, form[i]);
+      }
+    }
+
+    const res = await editPost(formData, data._id);
 
     if (res?.message) {
       toast.success(res.message);

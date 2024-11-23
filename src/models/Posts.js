@@ -10,6 +10,13 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: [String],
+      default: [],
+    },
+    imageFolderId: {
+      type: Number,
+    },
     address: {
       type: String,
       required: true,
