@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { toast } from "react-toastify";
 
 function PostFormImage({ name, form, setForm }) {
-  const [imagesUrl, setImagesUrl] = useState([]);
   const refImage = useRef(null);
 
   const changeHandler = (event) => {
@@ -18,7 +17,10 @@ function PostFormImage({ name, form, setForm }) {
         toast.warning("بیشتر از پنج عدد عکس پشتیبانی نمی شود");
       } else {
         const newImageURl = URL.createObjectURL(files[0]);
-        setImagesUrl((prevUrl) => [...prevUrl, newImageURl]);
+        setForm((prvForm) => ({
+          ...prvForm,
+          imageUrl: [...form.imageUrl, newImageURl],
+        }));
 
         setForm((prvForm) => ({
           ...prvForm,
@@ -28,13 +30,15 @@ function PostFormImage({ name, form, setForm }) {
     }
   };
 
-  const deleteHandler = (item, index) => {
-    URL.revokeObjectURL(item);
+  const deleteHandler = (event, item, index) => {
+    event.stopPropagation();
 
-    const updateImage = imagesUrl.filter((i, number) => number !== index);
+    const updateImage = form.imageUrl.filter((i, number) => number !== index);
     const updateFormImages = form.image.filter((i, number) => number !== index);
 
-    setImagesUrl(updateImage);
+    setForm((prvForm) => ({ ...prvForm, imageUrl: updateImage }));
+    URL.revokeObjectURL(item);
+
     setForm((prvForm) => ({
       ...prvForm,
       [name]: updateFormImages,
@@ -61,9 +65,9 @@ function PostFormImage({ name, form, setForm }) {
           />
         </div>
 
-        {imagesUrl.length !== 0 && (
+        {form.imageUrl.length !== 0 && (
           <div className="w-full flex items-center justify-start gap-1">
-            {imagesUrl.map((item, index) => (
+            {form.imageUrl.map((item, index) => (
               <div
                 key={item}
                 className="w-14 h-10 rounded overflow-hidden relative"
@@ -78,7 +82,7 @@ function PostFormImage({ name, form, setForm }) {
 
                 <button
                   className="w-full h-full absolute top-0 right-0 backdrop-blur text-bgMain opacity-0 hover:opacity-100 transition-all ease-in duration-100"
-                  onClick={() => deleteHandler(item, index)}
+                  onClick={(event) => deleteHandler(event, item, index)}
                 >
                   حذف
                 </button>

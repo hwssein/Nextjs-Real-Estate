@@ -17,6 +17,7 @@ function AddPostPage({ data }) {
     postTitle: "",
     description: "",
     image: [],
+    imageUrl: [],
     address: "",
     telNumber: "",
     price: "",
@@ -62,10 +63,14 @@ function AddPostPage({ data }) {
 
     if (res?.message) {
       toast.success(res.message);
+
+      form.imageUrl.map((item) => URL.revokeObjectURL(item));
+
       setForm({
         postTitle: "",
         description: "",
         image: [],
+        imageUrl: [],
         address: "",
         telNumber: "",
         price: "",
