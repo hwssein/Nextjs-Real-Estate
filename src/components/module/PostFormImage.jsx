@@ -1,11 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 
-function PostFormImage({ name, form, setForm, editImage, setEditImage }) {
+function PostFormImage({
+  name,
+  form,
+  setForm,
+  editImage,
+  setEditImage,
+  editImageData,
+}) {
   const refImage = useRef(null);
+
+  useEffect(() => {
+    if (editImageData && editImageData?.length !== 0) {
+      setEditImage({ ...editImage, imageUrl: editImageData });
+    }
+  }, [editImageData]);
 
   const changeHandler = (event) => {
     const { files } = event.target;
@@ -13,7 +26,7 @@ function PostFormImage({ name, form, setForm, editImage, setEditImage }) {
     if (files[0]) {
       if (files[0].size >= 1500000) {
         toast.warning("عکس های بزرگتر از یک مگابایت و نیم پشتیبانی نمی شود");
-      } else if (form.image.length >= 5) {
+      } else if (editImage.imageUrl.length >= 5) {
         toast.warning("بیشتر از پنج عدد عکس پشتیبانی نمی شود");
       } else {
         const newImageURl = URL.createObjectURL(files[0]);
@@ -22,9 +35,9 @@ function PostFormImage({ name, form, setForm, editImage, setEditImage }) {
           imageUrl: [...editImage.imageUrl, newImageURl],
         }));
 
-        setForm((prvForm) => ({
-          ...prvForm,
-          [name]: [...form[name], files[0]],
+        setEditImage((prvData) => ({
+          ...prvData,
+          newImage: [...editImage.newImage, files[0]],
         }));
       }
     }
@@ -33,18 +46,31 @@ function PostFormImage({ name, form, setForm, editImage, setEditImage }) {
   const deleteHandler = (event, item, index) => {
     event.stopPropagation();
 
-    const updateImage = editImage.imageUrl.filter(
+    if (editImage.imageUrl && editImage.imageUrl.length !== 0) {
+      const updateImage = editImage.imageUrl.filter(
+        (i, number) => number !== index
+      );
+
+      setEditImage((prvForm) => ({ ...prvForm, imageUrl: updateImage }));
+    }
+
+    const updatedNewImage = editImage.newImage.filter(
       (i, number) => number !== index
     );
-    const updateFormImages = form.image.filter((i, number) => number !== index);
+    setEditImage((prvForm) => ({ ...prvForm, newImage: updatedNewImage }));
 
-    setEditImage((prvForm) => ({ ...prvForm, imageUrl: updateImage }));
     URL.revokeObjectURL(item);
 
-    setForm((prvForm) => ({
+    const removedImageUrl = editImage.imageUrl.filter(
+      (i, number) => number === index
+    );
+    setEditImage((prvForm) => ({
       ...prvForm,
-      [name]: updateFormImages,
+      removeImage: [...editImage.removeImage, ...removedImageUrl],
     }));
+
+    const updateFormImage = form.image.filter((i, number) => number !== index);
+    setForm((prvForm) => ({ ...prvForm, image: updateFormImage }));
   };
 
   return (
@@ -67,9 +93,9 @@ function PostFormImage({ name, form, setForm, editImage, setEditImage }) {
           />
         </div>
 
-        {editImage.imageUrl.length !== 0 && (
+        {editImage?.imageUrl?.length !== 0 && (
           <div className="w-full flex items-center justify-start gap-1">
-            {editImage.imageUrl.map((item, index) => (
+            {editImage?.imageUrl?.map((item, index) => (
               <div
                 key={item}
                 className="w-14 h-10 rounded overflow-hidden relative"

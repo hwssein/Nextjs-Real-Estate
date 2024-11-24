@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 
 import findUser from "@/serverAction/findUser";
 import Posts from "@/models/Posts";
-import supabase from "@/lib/supabase";
+import uploadAndGetImageUrl from "@/utils/uploadAndGetImageUrl";
 
 const submitPost = async (formData) => {
   try {
@@ -14,7 +14,7 @@ const submitPost = async (formData) => {
 
     const postTitle = formData.get("postTitle");
     const description = formData.get("description");
-    const image = formData.getAll("image");
+    const newImage = formData.getAll("newImage");
     const address = formData.get("address");
     const telNumber = formData.get("telNumber");
     const price = formData.get("price");
@@ -24,7 +24,7 @@ const submitPost = async (formData) => {
     const rules = formData.getAll("rules");
     const constructionDate = formData.get("constructionDate");
 
-    const imagePublicUrl = [];
+    let imagePublicUrl = null;
     const randomNumber = Math.floor(10000000 + Math.random() * 90000000);
 
     const regex = /^9\d{9}$/;
@@ -43,39 +43,20 @@ const submitPost = async (formData) => {
     )
       throw new Error("اطلاعات وارد شده معتبر نیست");
 
-    if (image) {
-      for (let i of image) {
-        const { data, error } = await supabase.storage
-          .from("upload-image")
-          .upload(
-            `${user._id}/${randomNumber}/${Date.now()}-${
-              i.name
-                ? i.name?.replace(/\s+/g, "-")?.replace(/[^a-zA-Z0-9\.-]/g, "")
-                : ".png"
-            }`,
-            i
-          );
-
-        if (error) {
-          console.log(error);
-          throw new Error("مشکلی هنگام آپلود تصویر به وجود آمد");
-        }
-
-        const { data: publicUrlData } = supabase.storage
-          .from("upload-image")
-          .getPublicUrl(data.path);
-
-        if (publicUrlData) {
-          imagePublicUrl.push(publicUrlData.publicUrl);
-        }
-      }
+    if (newImage && newImage.length !== 0) {
+      imagePublicUrl = await uploadAndGetImageUrl(
+        newImage,
+        user._id,
+        randomNumber
+      );
+      if (imagePublicUrl.error) throw new Error(imagePublicUrl.error);
     }
 
     try {
       const newPost = await Posts.create({
         postTitle,
         description,
-        image: imagePublicUrl,
+        image: imagePublicUrl ?? [],
         imageFolderId: randomNumber,
         address,
         telNumber: Number(telNumber),

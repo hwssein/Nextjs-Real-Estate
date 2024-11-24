@@ -4,7 +4,8 @@ import { revalidatePath } from "next/cache";
 
 import Posts from "@/models/Posts";
 import findUser from "@/serverAction/findUser";
-import supabase from "@/lib/supabase";
+import removeImageUrl from "@/utils/removeImageUrl";
+import uploadAndGetImageUrl from "@/utils/uploadAndGetImageUrl";
 
 const editPost = async (formData, id) => {
   try {
@@ -14,6 +15,8 @@ const editPost = async (formData, id) => {
     const postTitle = formData.get("postTitle");
     const description = formData.get("description");
     const image = formData.getAll("image");
+    const removeImage = formData.getAll("removeImage");
+    const newImage = formData.getAll("newImage");
     const address = formData.get("address");
     const telNumber = formData.get("telNumber");
     const price = formData.get("price");
@@ -23,7 +26,7 @@ const editPost = async (formData, id) => {
     const rules = formData.getAll("rules");
     const constructionDate = formData.get("constructionDate");
 
-    const imagePublicUrl = [];
+    let imagePublicUrl = image;
 
     const regex = /^9\d{9}$/;
     const telNumberResult = regex.test(telNumber);
@@ -44,32 +47,24 @@ const editPost = async (formData, id) => {
     const post = await Posts.findOne({ _id: id });
     if (!user._id.equals(post.userId))
       throw new Error("دسترسی شما به این آگهی محدود شده است");
+    if (!post) {
+      throw new Error("پست مورد نظر پیدا نشد");
+    }
 
-    if (image) {
-      for (let i of image) {
-        const { data, error } = await supabase.storage
-          .from("upload-image")
-          .upload(
-            `${user._id}/${post.imageFolderId}/${Date.now()}-${
-              i.name
-                ? i.name?.replace(/\s+/g, "-")?.replace(/[^a-zA-Z0-9\.-]/g, "")
-                : ".png"
-            }`,
-            i
-          );
+    if (removeImage && removeImage.length !== 0) {
+      const removedImages = await removeImageUrl(removeImage);
+      if (removedImages.error) throw new Error(removedImages.error);
+    }
 
-        if (error) {
-          throw new Error("مشکلی هنگام آپلود تصویر به وجود آمد");
-        }
+    if (newImage && newImage.length !== 0) {
+      const newImagesPublicUrl = await uploadAndGetImageUrl(
+        newImage,
+        user._id,
+        post.imageFolderId
+      );
+      if (newImagesPublicUrl.error) throw new Error(newImagesPublicUrl.error);
 
-        const { data: publicUrlData } = supabase.storage
-          .from("upload-image")
-          .getPublicUrl(data.path);
-
-        if (publicUrlData) {
-          imagePublicUrl.push(publicUrlData.publicUrl);
-        }
-      }
+      imagePublicUrl = [...imagePublicUrl, ...newImagesPublicUrl];
     }
 
     try {

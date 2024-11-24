@@ -30,6 +30,7 @@ function AddPostPage({ data }) {
   const [editImage, setEditImage] = useState({
     imageUrl: [],
     removeImage: [],
+    newImage: [],
   });
 
   useEffect(() => {
@@ -47,9 +48,7 @@ function AddPostPage({ data }) {
 
     for (let i in form) {
       if (i === "image") {
-        for (let img = 0; img < form.image.length; img++) {
-          formData.append("image", form.image[img]);
-        }
+        formData.append("image", []);
       } else if (i === "amenities") {
         for (let amn = 0; amn < form.amenities.length; amn++) {
           formData.append("amenities", form.amenities[amn]);
@@ -60,6 +59,14 @@ function AddPostPage({ data }) {
         }
       } else {
         formData.append(i, form[i]);
+      }
+    }
+
+    for (let i in editImage) {
+      if (i !== "imageUrl") {
+        for (let item = 0; item < editImage[i].length; item++) {
+          formData.append(i, editImage[i][item]);
+        }
       }
     }
 
@@ -84,7 +91,7 @@ function AddPostPage({ data }) {
         constructionDate: new Date(),
       });
 
-      setEditImage({ imageUrl: [], removeImage: [] });
+      setEditImage({ imageUrl: [], removeImage: [], newImage: [] });
       router.refresh();
     }
 
@@ -109,6 +116,14 @@ function AddPostPage({ data }) {
         }
       } else {
         formData.append(i, form[i]);
+      }
+    }
+
+    for (let i in editImage) {
+      if (i !== "imageUrl") {
+        for (let item = 0; item < editImage[i].length; item++) {
+          formData.append(i, editImage[i][item]);
+        }
       }
     }
 

@@ -15,7 +15,7 @@ function PostDetailsPage({ data }) {
             <PostDetailsImage data={data?.image} />
           </div>
         ) : (
-          <div className="w-full flex items-center justify-center mb-8">
+          <div className="w-full flex items-center justify-center py-4 mb-8">
             <Image
               src="/image/image-unavailable.png"
               width={400}

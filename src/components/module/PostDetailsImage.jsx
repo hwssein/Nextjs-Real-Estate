@@ -11,20 +11,19 @@ function PostDetailsImage({ data }) {
     <>
       <Swiper
         className="w-full rounded"
-        pagination={{
-          dynamicBullets: true,
-        }}
+        pagination={{ dynamicBullets: true }}
         modules={[Pagination]}
       >
         {data?.map((item, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="w-full">
             <Image
               src={item}
               width={500}
               height={400}
               alt={`${index}-post-image`}
-              className="w-full h-full"
+              className="w-full h-auto"
               priority={true}
+              layout="responsive"
             ></Image>
           </SwiperSlide>
         ))}

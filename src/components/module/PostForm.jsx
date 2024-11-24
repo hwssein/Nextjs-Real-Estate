@@ -48,6 +48,7 @@ function PostForm({
           setForm={setForm}
           editImage={editImage}
           setEditImage={setEditImage}
+          editImageData={data?.image}
         />
 
         <PostFormInput
