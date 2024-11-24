@@ -17,7 +17,6 @@ function AddPostPage({ data }) {
     postTitle: "",
     description: "",
     image: [],
-    imageUrl: [],
     address: "",
     telNumber: "",
     price: "",
@@ -26,6 +25,11 @@ function AddPostPage({ data }) {
     amenities: [],
     rules: [],
     constructionDate: new Date(),
+  });
+
+  const [editImage, setEditImage] = useState({
+    imageUrl: [],
+    removeImage: [],
   });
 
   useEffect(() => {
@@ -64,13 +68,12 @@ function AddPostPage({ data }) {
     if (res?.message) {
       toast.success(res.message);
 
-      form.imageUrl.map((item) => URL.revokeObjectURL(item));
+      editImage.imageUrl.map((item) => URL.revokeObjectURL(item));
 
       setForm({
         postTitle: "",
         description: "",
         image: [],
-        imageUrl: [],
         address: "",
         telNumber: "",
         price: "",
@@ -80,6 +83,8 @@ function AddPostPage({ data }) {
         rules: [],
         constructionDate: new Date(),
       });
+
+      setEditImage({ imageUrl: [], removeImage: [] });
       router.refresh();
     }
 
@@ -126,6 +131,8 @@ function AddPostPage({ data }) {
       <PostForm
         form={form}
         setForm={setForm}
+        editImage={editImage}
+        setEditImage={setEditImage}
         changeHandler={changeHandler}
         submitHandler={submitHandler}
         editHandler={editHandler}

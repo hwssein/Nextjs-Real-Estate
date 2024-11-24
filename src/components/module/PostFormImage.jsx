@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { toast } from "react-toastify";
 
-function PostFormImage({ name, form, setForm }) {
+function PostFormImage({ name, form, setForm, editImage, setEditImage }) {
   const refImage = useRef(null);
 
   const changeHandler = (event) => {
@@ -17,9 +17,9 @@ function PostFormImage({ name, form, setForm }) {
         toast.warning("بیشتر از پنج عدد عکس پشتیبانی نمی شود");
       } else {
         const newImageURl = URL.createObjectURL(files[0]);
-        setForm((prvForm) => ({
+        setEditImage((prvForm) => ({
           ...prvForm,
-          imageUrl: [...form.imageUrl, newImageURl],
+          imageUrl: [...editImage.imageUrl, newImageURl],
         }));
 
         setForm((prvForm) => ({
@@ -33,10 +33,12 @@ function PostFormImage({ name, form, setForm }) {
   const deleteHandler = (event, item, index) => {
     event.stopPropagation();
 
-    const updateImage = form.imageUrl.filter((i, number) => number !== index);
+    const updateImage = editImage.imageUrl.filter(
+      (i, number) => number !== index
+    );
     const updateFormImages = form.image.filter((i, number) => number !== index);
 
-    setForm((prvForm) => ({ ...prvForm, imageUrl: updateImage }));
+    setEditImage((prvForm) => ({ ...prvForm, imageUrl: updateImage }));
     URL.revokeObjectURL(item);
 
     setForm((prvForm) => ({
@@ -65,9 +67,9 @@ function PostFormImage({ name, form, setForm }) {
           />
         </div>
 
-        {form.imageUrl.length !== 0 && (
+        {editImage.imageUrl.length !== 0 && (
           <div className="w-full flex items-center justify-start gap-1">
-            {form.imageUrl.map((item, index) => (
+            {editImage.imageUrl.map((item, index) => (
               <div
                 key={item}
                 className="w-14 h-10 rounded overflow-hidden relative"

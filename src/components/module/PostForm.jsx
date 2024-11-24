@@ -14,6 +14,8 @@ import PostFormImage from "./PostFormImage";
 function PostForm({
   form,
   setForm,
+  editImage,
+  setEditImage,
   changeHandler,
   submitHandler,
   editHandler,
@@ -40,7 +42,13 @@ function PostForm({
           title="توضیحات"
         />
 
-        <PostFormImage name="image" form={form} setForm={setForm} />
+        <PostFormImage
+          name="image"
+          form={form}
+          setForm={setForm}
+          editImage={editImage}
+          setEditImage={setEditImage}
+        />
 
         <PostFormInput
           type="text"
