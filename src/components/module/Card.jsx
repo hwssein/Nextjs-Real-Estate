@@ -25,8 +25,8 @@ function Card({ data }) {
             <div className="w-28">
               <Image
                 src={data?.image[0]}
-                width={400}
-                height={300}
+                width={250}
+                height={150}
                 alt={`card-${data._id}`}
                 className="w-full"
               ></Image>
@@ -35,8 +35,8 @@ function Card({ data }) {
             <div className="w-28">
               <Image
                 src="/image/image-unavailable.png"
-                width={400}
-                height={300}
+                width={250}
+                height={150}
                 alt={`card-${data._id}`}
                 className="w-full"
               ></Image>
