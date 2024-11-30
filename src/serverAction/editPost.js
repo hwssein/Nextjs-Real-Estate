@@ -45,7 +45,7 @@ const editPost = async (formData, id) => {
       throw new Error("اطلاعات وارد شده معتبر نیست");
 
     const post = await Posts.findOne({ _id: id });
-    if (!user._id.equals(post.userId))
+    if (!user._id.equals(post.userId) && user?.role === "USER")
       throw new Error("دسترسی شما به این آگهی محدود شده است");
     if (!post) {
       throw new Error("پست مورد نظر پیدا نشد");

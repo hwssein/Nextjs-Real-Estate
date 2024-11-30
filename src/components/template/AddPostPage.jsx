@@ -73,7 +73,7 @@ function AddPostPage({ data }) {
     const res = await submitPost(formData);
 
     if (res?.message) {
-      toast.success(res.message);
+      toast.success("آگهی شما پس از بازبینی و تایید منتشر میشود.");
 
       editImage.imageUrl.map((item) => URL.revokeObjectURL(item));
 

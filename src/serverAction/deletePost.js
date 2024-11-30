@@ -8,9 +8,10 @@ const deletePost = async (id) => {
   try {
     const user = await findUser();
     if (user.error) throw new Error(user.error);
+    console.log(user);
 
     const post = await Posts.findOne({ _id: id });
-    if (!user._id.equals(post.userId))
+    if (!user._id.equals(post.userId) && user?.role === "USER")
       throw new Error("دسترسی شما به این آگهی محدود شده است");
 
     await Posts.deleteOne({ _id: id });
