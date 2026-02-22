@@ -14,7 +14,7 @@
     "bcryptjs": "^2.4.3",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
-    "next": "14.2.14",
+    "next": "14.2.35",
     "next-auth": "^5.0.0-beta.22",
     "num2persian": "^3.2.2",
     "react": "^18",
